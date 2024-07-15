@@ -48,7 +48,7 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->except('_token'))));
+        event(new Registered($user = $this->create($request->all())));
 
         // $this->guard()->login($user);
 
@@ -98,6 +98,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create($data);
+        return User::create(
+            [
+                'name'=>$data['name'],
+                'email'=>$data['email'],
+                'password'=>Hash::make($data['password']),
+                'username' => $data['username'],
+            ]
+        );
     }
 }

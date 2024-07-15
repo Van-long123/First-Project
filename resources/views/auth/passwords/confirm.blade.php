@@ -20,7 +20,7 @@
                                 <input id="password" type="password" class="border form-control @error('password') is-invalid @enderror" name="password"  autocomplete="current-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback text-center" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
