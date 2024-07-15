@@ -1,0 +1,50 @@
+@media (max-width: 450px) {
+    html {
+      font-size: 50%;
+    }
+    .shopping-cart-container .cart-total .box {
+      text-align: center;
+    }
+    .shopping-cart-container .cart-total .box .btn {
+      width: 100%;
+    }
+    .home .content h3 {
+      font-size: 3rem;
+    }
+    .home .content p {
+      font-size: 1.5rem;
+    }
+  }
+  @media screen and (max-width: 900px) {
+      .sectionLogin {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: none;
+          background: #ffff;
+          width: 80%;
+          border-radius: 1rem;
+          margin-left: 3rem;
+          margin-top: 4em;
+        }
+      .sectionLogin .section-L-left img {
+          display: none;
+      }
+      .section-L-right .input-type {
+          margin-left: 1rem;
+        }
+        .section-L-right button {
+          width: 90%;
+          height: 8vh;
+          margin-top: 2rem;
+          margin-left: 0rem;
+        }
+      .sectionSigin {
+          background: #ffff;
+          width: 30rem;
+          box-shadow: 5px 6px 6px 1px #d4d4d4;
+          border-radius: 1rem;
+          margin-top: none;
+          margin-left: 1rem;
+          position: relative;
+        }
+  }
