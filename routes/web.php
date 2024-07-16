@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +42,16 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/home');
 })->middleware(['auth'])->name('verification.verify');
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('productofcategory/{category}',[HomeController::class, 'productOfCategory'])->name('product.category');
+Route::get('/detail/product/{product}',[HomeController::class, 'detailProduct'])->name('detail.product');
+// Route::get('/detail/product/{product}',[HomeController::class, 'detailProduct'])->name('detail.product');
+
+// Login with google
+Route::get('auth/google',[LoginController::class,'loginGoogle'])->name('auth.google');
+Route::get('auth/google/callback',[LoginController::class,'googleCallback']);
+
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

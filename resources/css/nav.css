@@ -23,6 +23,9 @@
     color: #ffc800;
     text-shadow: 1px 1px 1px black;
 }
+.searchInput{
+    height: 100%;
+}
 .icons{
     margin-right: 30px; 
     font-size: 23px;  
@@ -55,6 +58,7 @@
 }
 .icon-search{
     position: relative;
+    height: 50px
 }
 .bi-search{
     position: absolute;

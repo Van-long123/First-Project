@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -37,6 +41,31 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
+    }
+    public function loginGoogle(){
+        return Socialite::driver('google')->redirect();
+    }
+    public function googleCallback(){
+        $userGoogle = Socialite::driver('google')->user();
+        $providerID=$userGoogle->getId();
+        $provider='google';
+        $user=User::where([
+            'provider'=>$provider,
+            'provider_id' => $providerID
+        ])->first();
+        if(!$user){
+            $user=new User();
+            $user->name=$userGoogle->getName();
+            $user->username=$userGoogle->getName();
+            $user->email=$userGoogle->getEmail();
+            $user->password=Hash::make(rand());
+            $user->provider='google';
+            $user->provider_id=$providerID;
+            $user->save();
+        }
+        $userId=$user->id;
+        Auth::loginUsingId($userId);
+        return redirect($this->redirectTo);
     }
     protected function validateLogin(Request $request)
     {

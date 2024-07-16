@@ -39,6 +39,11 @@
         </div>
         </div>
           <button type="submit">Đăng nhập</button>
+
+          {{-- <div class="py-3">
+            <a class="btn btn-primary p-2" href="{{route('auth.google')}}">Đăng nhập bằng google</a>
+          </div> --}}
+
         <p class="not-account">
             <a href="{{route('password.request')}}">Quên mật khẩu</a>
         </p>
@@ -49,3 +54,4 @@
 
 
 @endsection
+
