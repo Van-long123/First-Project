@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.home')
 
 @section('content')
 <div id="Menu" class="menu section-padding">
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <div class="our-menu">
+          <div class="our-menu mb-5">
             <h1> <span>Thực đơn</span></h1>
           </div>
         </div>
@@ -49,6 +49,7 @@
                             {{-- <a href="{{route('detail.product',$value->id)}}"> --}}
                             <div class="money-menu">{{$value->price}}<sup>đ</sup></div>
                         <div class="card-body">
+                            <a href="{{route('detail.product',$value->id)}}">
                                 <h5 class="card-title">
                                     {{$value->product_name}}
                                 </h5>

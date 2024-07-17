@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="{{route('login')}}" method="post" id="forml">
+<div class="Login">
+  <form action="{{route('login')}}" method="post" id="forml">
     @csrf
     <section class="sectionLogin">
       <div class="section-L-left">
@@ -50,6 +51,7 @@
       </div>
     </section>
   </form>
+</div>
 
 
 

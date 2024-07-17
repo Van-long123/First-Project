@@ -46,8 +46,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('productofcategory/{category}',[HomeController::class, 'productOfCategory'])->name('product.category');
 Route::get('/detail/product/{product}',[HomeController::class, 'detailProduct'])->name('detail.product');
 // Route::get('/detail/product/{product}',[HomeController::class, 'detailProduct'])->name('detail.product');
-
+Route::get('cart',[HomeController::class, 'cart'])->name('cart');
 // Login with google
+
 Route::get('auth/google',[LoginController::class,'loginGoogle'])->name('auth.google');
 Route::get('auth/google/callback',[LoginController::class,'googleCallback']);
 
@@ -55,3 +56,5 @@ Route::get('auth/google/callback',[LoginController::class,'googleCallback']);
 
 Auth::routes();
 
+route::get('test',function(){
+});

@@ -44,4 +44,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
    
+    public function product(){
+        return $this->belongsToMany(
+            product::class,
+            'carts',
+            'user_id',
+            'product_id'
+        );
+    }
 }

@@ -1,0 +1,686 @@
+hr {
+    width: 20%;
+  }
+  button:hover {
+    color: #0dcaf0;
+    border: 1px solid #0dcaf0;
+  }
+  button i {
+    color:black;
+    /* border: 1px solid black; */
+  }
+  
+  .signIn{
+    background-color: white;
+    border: 1px solid white;
+    padding: 8px 8px 5px 6px;
+    border-radius: 5px;
+  }
+  .language{
+    background-color: white;
+    border: 1px solid white;
+    padding: 8px 2px 5px 2px;
+    border-radius: 5px;
+  }
+  .search-info-food {
+    border-radius: 6px;
+    
+  }
+  .search-info-food .input-search {
+      border-radius: 2rem;
+      width: 320px;
+      height: 48px;
+    border: 1px solid #eeeded;
+    transition: all 0.3s linear;
+  }
+  .search-info-food .input-search:hover{
+      width: 25rem;
+      height: 2.8rem;
+  }
+  .search-info-food .input-search:hover {
+    border: 1px solid #0dcaf0;
+  }
+  .search-info-food .press-icon {
+    position: relative;
+    top: 0.5rem;
+  }
+  
+  /* .search-info-food .press-icon .fa-location-dot{
+    color: #ee6352;
+    right: 18.5rem;
+    top: 0.8rem;
+    position: absolute;
+  } */
+  .search-info-food .press-icon .bi-bullseye{
+    color: red;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 20px;
+  }
+  @media screen and (max-width:982px){
+    .icons{
+        margin-left: 10px;
+    }
+    .bi-bullseye{
+      display: none;
+    }
+  }
+  @media screen and (max-width:1208px){
+    .search-info-food{
+        margin: 0px;
+    }
+  }
+  /* nav */
+  .text-food{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  
+  
+  
+  
+  .next-adress-food{
+    list-style: none;
+  }
+  .next-adress-food li a{
+    color: #0dcaf0;
+  }
+  
+  .food-details {
+    background: #F7F7F7;
+    line-height: 1;
+    display: flex;
+  }
+  .food-details .img-details {
+    /* flex-basis: 60%; */
+  }
+  .food-details .img-details .aside-img img {
+    width: 86%;
+    height: 25rem;
+  }
+  .food-details .img-details .aside-img .img-info-more {
+    display: flex;
+    margin-top: 1rem;
+    /* margin-left: 2.5rem; */
+  }
+  .food-details .img-details .aside-img .img-info-more .img-again {
+    border: 1px solid rgb(218, 213, 213);
+    overflow: hidden;
+    /* margin: 0 7.2px;
+    padding: 0 10px; */
+  }
+  .food-details .img-details .aside-img .img-info-more .img-again:hover {
+    border: 1px solid #0dcaf0;
+  }
+  .food-details .img-details .aside-img .img-info-more .img-again img {
+    display: block; /* Hiển thị ảnh dưới dạng khối */
+    width: 6rem;
+    height: 5rem;
+    justify-content: center;
+    justify-items: center;
+    transition: 0.3s;
+  }
+  .food-details .img-details .aside-img .img-info-more .img-again img:hover {
+    transform: scale(1.1);
+  }
+  
+  .text-food-details {
+    margin-right: 0px;
+  }
+  .food-details .text-food-details {
+    flex-basis: 40%;
+  }
+  .food-details .text-food-details .title-food {
+    font-weight: bold;
+    font-size: x-large;
+  }
+  .food-details .text-food-details .address-eatery {
+    font-size: small;
+  }
+  .fa-star {
+    color: #0dcaf0;
+  }
+  .buy-now {
+    width: 21rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background: #ffffff;
+    border: 1px solid rgb(165, 160, 160);
+  }
+  .buy-now a{
+    color: #000000;
+    text-decoration: none
+
+  }
+  .buy-now a:hover
+  {
+    color: #0dcaf0;
+  }
+  .book-a-table-now .common-button{
+    width:10.4rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background: #ffffff;
+    border: 1px solid rgb(165, 160, 160);
+  }
+  .book-a-table-now .order-now{
+      position: relative;
+  }
+  .book-a-table-now .show-menu{
+    position: absolute;
+    width: 340px;
+  }
+  .new {
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: red;
+    color: #fff;
+    font-weight: 500;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-left: 19rem;
+  }
+  
+  
+  .row-utility {
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 10rem;
+  }
+  .row-utility .left-utility span {
+    color: #0dcaf0;
+    font-size: small;
+  }
+  .row-utility .left-utility p {
+    color: red;
+    font-weight: bold;
+    position: relative;
+  }
+  .row-utility .left-utility .partner {
+    background: #0dcaf0;
+    opacity: 0.8;
+    position: absolute;
+    transform: rotate(-14deg);
+    color: #fff;
+    border-radius: 3px;
+    z-index: 1;
+  }
+  .row-utility .right-utility span {
+    color: #0dcaf0;
+    font-size: small;
+  }
+  .row-utility .right-utility p {
+    color: red;
+    font-weight: bold;
+  }
+  /* .restaurant-information{
+    background: #F7F7F7;
+    display: flex;
+    height: 24rem;
+    margin-top: 0.5rem;
+  }
+  .restaurant-information .restaurant-information-left{
+    flex-basis: 60%;
+    margin-top: 3rem;
+    margin-left: 3rem;
+    border-right: 1px solid rgb(201, 201, 201);
+  }
+  .restaurant-information .restaurant-information-left p{
+    text-justify: auto;
+    font-size: 14px;
+    margin-left: 3rem;
+  }
+  .restaurant-information .restaurant-information-right{
+    flex-basis: 40%;
+    margin-top: 3rem;
+    margin-left: 1rem;
+  }
+  .restaurant-information .restaurant-information-right p{
+    margin-left: 4rem;
+  } */
+  
+  
+  .judge{
+    /* display: flex; */
+    border-bottom: 0.5px solid #d9d9d9;
+  }
+  .judge .img-profile img{
+    border-radius: 4rem;
+    width: 2rem;
+    height: 2rem;
+    margin-top: 0.4rem;
+  }
+  .name-tag{
+    font-weight: 500;
+    font-size: small;
+  }
+  .judge .info-profile .person-rate span{
+    font-size: small;
+
+  }
+  .judge .info-profile{
+    z-index: 100000;
+  }
+  .judge-comment {
+     display: flex;
+  }
+  .judge-comment .img-profile{
+    flex-basis: 30%;
+  }
+  .judge-comment .img-profile img{
+    border-radius: 4rem;
+    width: 2rem;
+    height: 2rem;
+    margin-top: 0.4rem;
+  }
+  .judge-comment .input-judge{
+    flex-basis: 70%;
+  }
+  .judge-comment .input-judge .ip{
+    width: 15rem;
+    margin-top: 2px;
+    outline: none;
+    height: 2.5rem;
+    border-radius: 4px;
+    margin-left: 0rem;
+    border: 1px solid #0dcaf0;
+    text-indent: 2rem;
+    transition: all 0.6s linear;
+  }
+  .judge-comment .input-judge .ip:hover{
+    height: 2.6rem;
+    width: 17rem;
+  
+    border: 1px solid #fc0000;
+  }
+  .judge-comment .input-judge .button-input-judge{
+    height: 2.5rem;
+    width: 5rem;
+    border-radius: 4px;
+    border: 1px solid #0dcaf0;
+    font-weight: bold;
+  }
+  
+  .about-content{
+    margin-top: 0.5rem;
+    background: #F7F7F7;
+    height: auto;
+  }
+  .about-content ul{
+    list-style: none;
+  }
+  .about-content ul li{
+    float: left;
+  }
+  .about-content ul li a{
+    color: #000;
+    padding: 0px 0.5rem;
+  }
+  .about-content ul li a:hover{
+    color: #0DCAF0;
+  }
+  
+  .content-item {
+    margin-top: 3rem;
+  }
+   .content-item .item {
+    /* padding-left: 2rem; */
+    /* overflow: hidden; */
+    padding-top: 10px;
+  }
+  .text-food{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  .ICONS-menu{
+    position: relative;
+    top: -10px;
+  }
+  .item-content img {
+    border-radius: 1rem;
+    width: 100%;
+    transition: 0.3s;
+  }
+  .item-content img:hover {
+    transform: scale(1.1);
+  }
+  .main .img-container {
+    cursor: pointer;
+    position: relative;
+  }
+  .promo {
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    border-radius: 0 2px 2px 0;
+    background-color: #0DCAF0;
+    color: #fff;
+    font-weight: 500;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 1rem;
+  }
+  .a{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  .common-button-order{
+    width: 45%;
+    height: 36px;
+    background: #fff;
+    border: 1px solid #0dcaf0;
+    border-radius: 4px;
+  }
+  
+  .bottom-banner-container {
+    margin-top: 1rem;
+    height: auto;
+    background: #f7f7f7;
+    
+  }
+  .bottom-banner-container .bottom-info-left {
+    text-align: center;
+  }
+  .bottom-banner-container .bottom-info-left h4 {
+    font-size: large;
+  }
+  .bottom-banner-container .bottom-info-left p {
+    font-size: small;
+  }
+  .bottom-banner-container .bottom-info-right {
+    margin-top: 0.9rem;
+    text-align: center;
+  }
+  .bottom-banner-container .bottom-info-right h4 {
+    font-size: large;
+  }
+  .bottom-banner-container .bottom-info-right p {
+    font-size: small;
+  }
+  
+  
+  /*---------------------------------------CART---------------------------------*/
+  .cart{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    padding: 30px;
+  }
+  .cart h2{
+    margin-bottom: 20px;
+  }
+  .cart table{
+    width: 100%;
+  }
+  .cart table thead tr th:first-child{
+    text-align: left;
+  }
+  .cart table tr td{
+  border-bottom: 1px solid #ddd;
+  padding: 12px 0;
+  
+  }   
+  .cart table thead tr th:last-child{
+  text-align: right;
+  }
+  .cart table tbody tr td:last-child{
+    text-align: right;
+  }
+  .cart button{
+    margin-top: 12px;
+    height: 30px;
+    padding: 0 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(64, 170, 212);
+  }
+  .cart{
+    position: fixed;
+    height: 100vh;
+    width: 400px;
+    right: 0;
+    top: 0;
+    background-color: #FFFF;
+    padding: 12px 20px;
+    overflow-y: scroll;
+    right: -100%;
+    transition: all 0.4s ease;
+    z-index: 2000;
+  }
+  .cart i{
+    cursor: pointer;
+    font-size: 2rem;
+    margin-right: 19rem;
+  }
+  .cart-icon i{
+    cursor: pointer;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+    backdrop-filter: blur(5px); /* Áp dụng hiệu ứng mờ */
+  }
+  
+  
+  /* ---------------FOOTER--------------- */
+  .footer {
+    background: #0DCAF0;
+  }
+  .footer .logo-footer img {
+    width: 12rem;
+    margin-left: 2rem;
+  }
+  .footer .logo-footer .line-bottom {
+    border: 1px solid black;
+  }
+  .footer-container {
+    /* display: grid; */
+    grid-template-columns: repeat(4, 1fr); /* 4 cột bằng nhau */
+    grid-gap: 10px; /* khoảng cách giữa các cột */
+  }
+  .footer-container .column {
+    background-color: none;
+    padding: 10px;
+  }
+  .footer-container .column .icons-link-info{
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 3rem;
+    left: 0;
+  }
+  .footer-container .column ul a li {
+    line-height: 3rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  .footer-container .column .link-social {
+    width: auto;
+    height: auto;
+  }
+  .footer-container .column .link-social i {
+    float: left;
+    padding: 0px 1rem;
+    color: #fff;
+  }
+  .footer-container .column ul {
+    list-style: none;
+  }
+  .footer-container .column ul a {
+    text-decoration: none;
+  }
+  .footer-container .column .get-store img {
+    margin-top: 1rem;
+    width: 10rem;
+  }
+  
+  .column iframe {
+    width: 100%;
+    height: 15rem;
+  }
+  .coppyRight {
+    font-weight: bold;
+    float: right;
+    color: #fc0909;
+  }
+  
+  
+  
+  /* -------------------------Cửa sổ nổi--------------------- */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .table-frame {
+    width: 40rem;
+    height: 20rem;
+    overflow: hidden;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .table-frame-bottom {
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    overflow: hidden;
+    border: 2px solid #000; 
+    border-radius: 10px;
+    margin-top: 0.5rem;
+  }
+  .table-frame-bottom .left-button .bt{
+    flex-basis: 70%;
+    width: 8rem;
+    height: 2rem;
+    border-radius: 4px;
+    background: #0DCAF0;
+    color: #fff;
+    border:0.5px solid #000000;
+    font-weight: bold;
+    margin-top: 0.4rem;
+    margin-left: 1rem;
+    transition: all 0.4s linear;
+  }
+  .bt{
+    flex-basis: 70%;
+    width: 8rem;
+    height: 2rem;
+    border-radius: 4px;
+    background: #0DCAF0;
+    color: #fff;
+    border:0.5px solid #000000;
+    font-weight: bold;
+    margin-top: 0.4rem;
+    margin-left: 1rem;
+    transition: all 0.4s linear;
+  }
+  .table-frame-bottom .left-button button:hover{
+    width: 8.2rem;
+    height: 2.1rem;
+    color: #000;
+    background: #ffffff;
+  }
+  .table-frame-bottom .right-color{
+    display: flex;
+    flex-basis: 30%;
+    margin-left: 18rem;
+  }
+  .table-frame-bottom .right-color .color-red{
+    background: red;
+    border: 1px solid black;
+    color: #fff;
+    font-weight: bold;
+    width: 4rem;
+    height: 4rem;
+  }
+  .table-frame-bottom .right-color .color-blue{
+    background: #0DCAF0;
+    border: 1px solid black;
+    color: #fff;
+    font-weight: bold;
+    width: 4.5rem;
+    height: 4rem;
+  }
+  .table-frame-bottom .right-color .color-none{
+    background: #F7F7F7;
+    border: 1px solid black;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0px 6px 0px 0px;
+  
+  }
+  .table-row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .table {
+    width: 100px;
+    height: 70px;
+    background: #F7F7F7;
+    border: 2px solid #000;
+    border-radius: 10px;
+    line-height: 100px;
+    font-size: 24px;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: all 1s unset;
+  }
+  
+  .table:hover {
+    background-color: #0DCAF0;
+    width: 104px;
+    height: 74px;
+  }
+  .fix-center{
+    margin-left: 1rem;
+  }
