@@ -10,7 +10,7 @@ class product extends Model
     use HasFactory;
     protected $table='products';
     public function getAllProduct($keywords=null,$perPage=null){
-        $products=product::select('id','product_name','image','price');
+        $products=product::select('id','product_name','image','price','quantity');
         if(!empty($keywords)){
             $products=$products->where('product_name','like','%'.$keywords.'%');
         }

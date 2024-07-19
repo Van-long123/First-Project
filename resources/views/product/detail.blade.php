@@ -1,7 +1,7 @@
-@extends('layouts.home')
+@extends('layouts.app')
 
 @section('content')
-      <div class="food-details" style="position: relative;top: -40px">
+      <div class="food-details" >
          <div class="container">
             <div class="row d-sm-flex m-auto">
                <div class="img-details col-md-6">

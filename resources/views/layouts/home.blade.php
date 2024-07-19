@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    @vite(['resources/css/LS.css','resources/css/nav.css','resources/css/home.css'])
+    @vite(['resources/css/nav.css','resources/css/home.css'])
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @vite([ 'resources/js/cart.js','resources/js/menu.js'])
 </head>
 <body>
     <div id="home">
@@ -43,10 +45,12 @@
                                 </form>
                               </div>
 
-                            <div class="icons-cart">
+                            <div class="icons-cart" >
                                 <a  href="{{route('cart')}}"><i style="font-size: 23px; "
                                         class="bi bi-cart-check-fill"></i></a>
-
+                                <span class="countsp">
+                                    {{Auth::guard()->check() ? session('count'):''}}
+                                </span>
                                 <div id="addsucces">
                                     <p class="addsucces-xmark"><i class="fa-solid fa-xmark" onclick="closeaddsucces()"></i></p>
                                     <p class="addsucces-text"><i class="fa-solid fa-circle-check"></i>Thêm vào giỏ hàng thành công!</p>
@@ -88,3 +92,4 @@
     </div>
 </body>
 </html>
+

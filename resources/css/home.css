@@ -1,7 +1,7 @@
 .menu{
     z-index: 0;
-    /* position: relative; */
-    /* top: -70px; */
+    position: relative;
+    top: -13px;
 }
 .menu h1{
     font-size: 55px;
@@ -358,6 +358,9 @@ background-color: #ddd;
 .trash-img{
     cursor: pointer;
 }
+.trash-all{
+    cursor: pointer;
+}
 /* addsucces  */
 .page-item a:focus {
     box-shadow: none;
@@ -463,7 +466,7 @@ background-color: #ddd;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 25%;
+    
     text-align: center;
     border-radius: 5px;
   }

@@ -3,7 +3,7 @@
 @section('content')
 <div class="cart">
 
-    @if (empty($listCart))
+    @if (empty($countproduct))
         <div class="container px-0" style="border-bottom: 13px solid #efefef;">
             <div class=" cart-title py-2 mb-3">
                 <h4>GIỎ HÀNG</h4>
@@ -34,13 +34,13 @@
                         <span class="cart-header-text">Đơn giá</span>
                         <span class="cart-header-text">Số lượng</span>
                         <span class="cart-header-text">Thành tiền</span>
-                        <span onclick="showConfirmation(0)"><img class="trash-img" src="image/trash.svg"
+                        <span ><img class="trash-all" src="image/trash.svg"
                                 alt=""></span>
                     </div>
                     <div style="background-color: #F5F5FA;display: block;padding: 5px;"></div>
-                    
+                    <input type="hidden" name="_token" value="<?php echo csrf_token() ?>"> 
                     @foreach ($listCart as $value)
-                    <div class="cart-product" id="product_{{$value->product_id}}?>">
+                    <div class="cart-product" id="product_{{$value->product_id}}">
                         <div class="cart-body">
                             <div class="cart-item">
                                 <label>
@@ -51,18 +51,15 @@
                                 </a>
                             </div>
                             <div class="cart-gia">
-                                <span>{{$value->product_name}}</span><sup>đ</sup>
+                                <span>{{$value->price}}</span><sup>đ</sup>
                             </div>
-                            <div class="cart-sl" data-product-id="">
+                            <div class="cart-sl" data-product-id="{{$value->product_id}}">
                                 <span class="rounded-start decrease-btn">
                                     <img src="image/decrease.svg" alt="">
                                 </span>
-                                <!-- chú ý oninput .replace(/[^0-9]/g,''): Phương thức replace được gọi trên giá trị hiện tại của trường nhập liệu và sử dụng biểu thức chính quy (/[^0-9]/g) để tìm kiếm và thay thế các ký tự không phải số ([^0-9]) bằng một chuỗi rỗng ''.
-                          Ký tự "^" khi nằm trong một tập hợp [] có ý nghĩa phủ định. Nó chỉ định rằng các ký tự không được phép nằm trong tập hợp. -->
-                                <input type="number" class="qty-input" value="{{$value->quanlity}}">
-                                    {{-- <input type="text" class="qty-input" value=""
-                                    oninput="this.value = this.value.replace(/[^0-9]/g,'');"> --}}
-                                <input type="hidden" class="qty-input-hidden" value="{{$value->quanlity}}">
+                                    <input type="text" class="qty-input" value="{{$value->quantity}}"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g,'');">
+                                <input type="hidden" class="qty-input-hidden" value="{{$value->quantity}}">
                                 <span class="rounded-end increase-btn">
                                     <img src="image/increase.svg" alt="">
                                 </span>
@@ -71,11 +68,12 @@
                             <input type="hidden" class="qty-product" value="">
 
                             <div class="cart-tt ms-2">
-                                <span class="cart-tt-price" id="price-product-{{$value->product_id}}">{{$value->price*$value->quanlity}}</span><sup style="color: #FF424E;">đ</sup>
+                                <span class="cart-tt-price" id="price-product-{{$value->product_id}}">{{$value->price*$value->quantity}}</span><sup style="color: #FF424E;">đ</sup>
                             </div>
                             <div class="cart-img">
-                                <span onclick="showConfirmation({{$value->product_id}})"><img class="trash-img"
-                                        src="image/trash.svg" alt=""></span>
+                                <span class="trash" data-id="{{$value->product_id}}">
+                                    <img class="trash-img" src="image/trash.svg" alt="">
+                                </span>
                             </div>
                         </div>
                         <div style="background-color: #efefef;display: block;height: 1px;"></div>
@@ -86,7 +84,7 @@
                         </div>
                     </div>
                 @php
-                    $total+=$value->price*$value->quanlity
+                    $total+=$value->price*$value->quantity
                 @endphp
                 @endforeach
                 {{
@@ -98,7 +96,7 @@
                         @if (!empty($userInfo))
                         <div class="info-user">
                             <span class="header-title">Giao tới</span>
-                            <a class="header-nav" href="info_update.php">Thay đổi</a>
+                            <a class="header-nav" href="{{route('info_update')}}">Thay đổi</a>
                             <div class="customer-infor mt-1">
                                 <p>
                                     {{$userInfo->username}}
@@ -125,8 +123,8 @@
                             <span class="total total-money">{{$total}}</span><sup>đ</sup>
                         </div>
                         <div class="cart-sidebar-btn">
-                            <button class=""><a href="thanhtoan.php">Mua hàng( <span class="total-btn">
-
+                            <button class=""><a href="{{route('payment')}}">Mua hàng( <span class="total-btn">
+                                {{$countproduct}}
                                     </span> )</a></button>
                         </div>
                     </div>
@@ -161,14 +159,14 @@
     </div>
 </div>
 
-<div id="confirmationModal" class="modal">
-    <div class="modal-content">
+<div id="confirmationModal" class="modal" >
+    <div class="modal-content" style="width: 25%">
         <!-- <span class="close" onclick="closeConfirmation()">&times;</span> -->
-        <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Xóa sản phẩm</p>
+        <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Xóa sản phẩm</p>
         <p class="modal-text">Bạn có muốn xóa sản phẩm đang chọn?</p>
         <div class="modal-actions">
-            <button class="confirm" onclick="confirmDelete()">Xác nhận</button>
-            <button class="cancel" onclick="closeConfirmation()">Hủy</button>
+            <button class="confirm" >Xác nhận</button>
+            <button class="cancel">Hủy</button>
         </div>
     </div>
 </div>
@@ -177,8 +175,65 @@
     <div class="method-content">
         <p class="method-text">sản phẩm đã hết!</p>
         <div class="method-actions">
-            <button class="confirm" onclick="closemethod()">Xác nhận</button>
+            <button class="confirmation btn btn-primary" >Xác nhận</button>
         </div>
     </div>
 </div>
 @endsection
+
+{{-- <script>
+    let productIdToDelete = null;
+    function showConfirmation(productId) {
+        productIdToDelete = productId;
+        document.getElementById("confirmationModal").style.display = "block";
+    }
+    function closeConfirmation() {
+        document.getElementById("confirmationModal").style.display = "none";
+    }
+    function confirmDelete() {
+        // let csrfToken=document.querySelector('input[name="_token"]').value;
+        // console.log(csrfToken);
+        $.ajax({
+            type: 'get',
+            url: 'http://127.0.0.1:8000/cart/delete/product',
+            data: { 
+                product_id: productIdToDelete,
+                // _token:csrfToken
+            },
+            dataType:'json',
+            success:function(response){
+                let count=response.count
+                console.log(count);
+                if(count==0){
+                    document.getElementById('main_cart').innerHTML = `
+                        <div class="container px-0" style="border-bottom: 13px solid #efefef;">
+                            <div class=" cart-title py-2 mb-3">
+                            <h4>GIỎ HÀNG</h4>
+                            </div>
+                            <div class="cart-empty py-4 rounded">
+                            <img src="image/cart1.png">
+                            <p class="Cart-Empty-Notification">Giỏ hàng trống</p>
+                            <p style="font-size: 16px;">Bạn tham khảo thêm các sản phẩm được Food gợi ý bên dưới nhé!</p>
+                            </div>
+                        </div>
+                    `;
+                }
+                else{
+                    // console.log(productIdToDelete);
+                    // console.log(document.getElementById('product_' + productIdToDelete))
+                    document.getElementById('product_' + productIdToDelete).style.display = "none";
+                }
+            },
+            error: function(error){
+            }
+        })
+            
+        // window.location.href = 'deletecart.php?idsp=' + productIdToDelete;
+    
+        closeConfirmation();
+    }
+    </script>
+
+ --}}
+
+

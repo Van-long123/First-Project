@@ -43,20 +43,20 @@
             @if(!empty($products))
                 @foreach ($products as $key=>$value)
                     <div class="col-lg-4 col-md-6 col-12 mb-3">
-                        <div class="h-100 card">
-                            <img src="image/{{$value->image}}" class="card-img-top " alt="...">
+                        <div class="h-100 card" data-id="{{$value->id}}" data-quantity="{{$value->quantity}}">
+                            <img src="image/{{$value->image}}" data-image="{{ $value->image }}" class="card-img-top " alt="...">
                             <button class="btn-add rounded" ><i class="bi bi-cart-check-fill"></i></button>
                             {{-- <a href="{{route('detail.product',$value->id)}}"> --}}
                             <div class="money-menu">{{$value->price}}<sup>đ</sup></div>
-                        <div class="card-body">
-                            <a href="{{route('detail.product',$value->id)}}">
-                                <h5 class="card-title">
-                                    {{$value->product_name}}
-                                </h5>
-                            </a>
-                            <button class="btn btn-pay border border-primary mt-2">Mua ngay</button>
-                        </div>
-                    </div>
+                          <div class="card-body">
+                              <a href="{{route('detail.product',$value->id)}}">
+                                  <h5 class="card-title">
+                                      {{$value->product_name}}
+                                  </h5>
+                              </a>
+                              <a href="{{route('payment',$value->id)}}"><button class="btn btn-pay border border-primary mt-2">Mua ngay</button></a>
+                          </div>
+                      </div>
 
                         {{-- </a>    --}}
                     </div>

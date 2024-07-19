@@ -1,11 +1,3 @@
-/* display: grid;
-grid-template-columns: repeat(2, 1fr); 
-grid-gap: 10px; khoảng cách giữa các cột */
-* {
-    box-sizing: border-box;
-  }
-  
-  /* ----------------------Phần login--------------------- */
   .sectionLogin {
     display: grid;
     grid-template-columns: 60% 40%;
@@ -105,13 +97,7 @@ grid-gap: 10px; khoảng cách giữa các cột */
   }
   
   /* ----------------------------Bắt đầu form đăng ký------------------------ */
-  /* .background{
-    text-align: center;
-    position: absolute;
-  }
-  .background img{
-    margin-left: 20rem;
-  } */
+
   #formsig{
     display: flex;
     justify-content: center;
@@ -149,12 +135,12 @@ grid-gap: 10px; khoảng cách giữa các cột */
     outline: none;
     position: relative;
   }
-  i{
+  /* i{
     color: #FFC800;
     position: absolute;
     z-index: 1;
     margin-top: 0.7rem;
-  }
+  } */
   .section-S-right .input-type  input:hover {
     border-bottom: 2px solid #FFC800;
   }

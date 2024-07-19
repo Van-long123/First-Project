@@ -1,5 +1,6 @@
 <?php
 use App\Models\product;
+use App\Models\Info;
 use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
 function getProduct(){

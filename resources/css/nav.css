@@ -36,6 +36,7 @@
 }
 
 .icons-cart{
+    
     position: relative;
     z-index: 11;
 }
@@ -46,8 +47,8 @@
 }
 .icons-cart span{
     position: absolute;
-    top:-8px;
-    right: -7px;
+    top:-6px;
+    right: -47px;
     font-size: 11px;
     text-align: center;
     background-color: rgb(255, 66, 79);
@@ -68,12 +69,43 @@
     position: relative;
     /* right: -70px; */
 }
-
+.bi-search{
+    /* color: #FFC800; */
+    color: #38383D;
+    position: absolute;
+    z-index: 100000;
+    margin-top: 0.7rem;
+  }
+  .bi-search{
+    /* color: #FFC800; */
+    color: #38383D;
+    position: absolute;
+    z-index: 100000;
+    margin-top: 0.7rem;
+  }
+  .bi-cart-check-fill{
+    /* color: #FFC800; */
+    color: #38383D;
+    position: absolute;
+    z-index: 100000;
+    margin-top: 0.7rem;
+  }
+  .bi-person-fill{
+    /* color: #FFC800; */
+    color: #38383D;
+    position: absolute;
+    z-index: 100000;
+  }
 .icons-user{
     position: relative;
     left: 60px;
+    
+}
+.icons-user a i:hover{
+    color: #ffc800;
 }
 .icons-user-board{
+    z-index: 10000;
     position: absolute;
     top: 43px;
     width:170px;
