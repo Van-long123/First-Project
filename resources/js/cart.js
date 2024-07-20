@@ -10,10 +10,12 @@ const trashAll = document.querySelectorAll('.trash-img');
 const cancel = document.querySelector('.cancel');
 const confirm = document.querySelector('.confirm');
 const confirmation = document.querySelector('.confirmation');
+const payCart = document.querySelector('.pay-cart');
 
 
 decreaseBtns.forEach(function (button, index) {
     button.addEventListener('click', function () {
+        document.querySelector('.method-name-product').textContent=''
         let cartItem = button.closest('.cart-sl');
         let productId = cartItem.getAttribute('data-product-id');
         let inputField = button.parentElement.querySelector('.qty-input');
@@ -46,6 +48,7 @@ decreaseBtns.forEach(function (button, index) {
 });
 increaseBtns.forEach(function (button, index) {
     button.addEventListener('click', function () {
+        document.querySelector('.method-name-product').textContent=''
         let cartItem = button.closest('.cart-sl');
         let productId = cartItem.getAttribute('data-product-id');
         let inputField = button.parentElement.querySelector('.qty-input');
@@ -113,7 +116,9 @@ quantityInput.forEach(function (input, index) {
     })
 })
 
-
+trash.addEventListener('click',function(){
+    showConfirmation(0);
+});
 trashAll.forEach(function(trash,index){
     trash.addEventListener('click',function(){
         let cartTmage=trash.closest('.cart-img');
@@ -124,12 +129,45 @@ trashAll.forEach(function(trash,index){
     });
 });
 
-trash.addEventListener('click',function(){
-    showConfirmation(0);
-});
+payCart.addEventListener('click',function(){
+    $.ajax({
+        type:'get',
+        url:'http://127.0.0.1:8000/user/check/payment/incart',
+        data:{
+        },
+        dataType:'json',
+        success:function(response){
+            console.log(response);
+          if(response.status=='info_add'){
+            window.location.href='http://127.0.0.1:8000/info/add';
+          }
+        //   else if(response.status=='success'){
+        //     window.location.href='http://127.0.0.1:8000/user/payment/'+productId;
+        //   }
+          else if(Array.isArray(response.product_name)){
+            let content='';
+            response.product_name.forEach(element => {
+                content+=element+',';
+            });
+            content=content.replace(/,$/,'')
+            document.querySelector('.method-name-product').textContent=content
+            document.getElementById("notificationmethod").style.display = "block";
+          }
+          else{
+            window.location.href='http://127.0.0.1:8000/user/payment';
+            // console.log('Please');
+          }
+        },
+        error:function(error){
+  
+        }
+      })
+})
+
 cancel.addEventListener('click',function(){
     closeConfirmation();
 });
+
 confirm.addEventListener('click',function(){
     confirmDelete();
     closeConfirmation();

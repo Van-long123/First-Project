@@ -15,9 +15,9 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     @vite('resources/css/styleCTF.css')
-    @vite(['resources/css/LS.css', 'resources/css/reponsive.css','resources/css/nav.css','resources/css/home.css'])
+    @vite(['resources/css/LS.css', 'resources/css/reponsiveLS.css','resources/css/nav.css','resources/css/home.css'])
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js','resources/js/detail.js'])
 </head>
 <body>
     <div id="app">
@@ -52,7 +52,7 @@
                                 <a  href="{{route('cart')}}"><i style="font-size: 23px; "
                                         class="bi bi-cart-check-fill"></i></a>
                                 <span class="countsp">
-                                    {{Auth::guard()->check() ? session('count'):''}}
+                                    {{Auth::guard()->check() ? Auth::user()->cart()->count():''}}
                                 </span>
                                 <div id="addsucces">
                                     <p class="addsucces-xmark"><i class="fa-solid fa-xmark" onclick="closeaddsucces()"></i></p>
@@ -88,7 +88,7 @@
         </div>
         
 
-        <main class="my-5">
+        <main class="my-5 content">
             @yield('content')
         </main>
         {{-- @yield('suggestedproduct') --}}

@@ -1,45 +1,51 @@
 const btn_add=document.querySelectorAll('.btn-add');
-const quantity=document.querySelectorAll('input[name="qty"]');
-const product_id=document.querySelectorAll('input[name="pid"]');
-const name=document.querySelectorAll('input[name="name"]');
-const price=document.querySelectorAll('input[name="price"]');
-const image=document.querySelectorAll('input[name="image"]');
+const card=document.querySelectorAll('.card');
+const productName=document.querySelectorAll('.card-title');
+const Productprice=document.querySelectorAll('.money-menu');
+const Productimage=document.querySelectorAll('.card-img-top');
+const confirmation = document.querySelector('.confirmation');
+const faCheck = document.querySelector('.fa-xmark');
+faCheck.addEventListener('click',function(){
+    closeaddsucces();
+})
 btn_add.forEach(function(button,index){
   button.addEventListener('click',function(){
-    // alert(product_id[index].value);
-    // alert(index);
+    let product_id=card[index].dataset.id;
+    let quantity=card[index].getAttribute('data-quantity');
+    let product_name=productName[index].textContent.trim();
+    let price=Productprice[index].textContent;
+    let image=Productimage[index].getAttribute('data-image');
+    let count=document.querySelector('.countsp');
     $.ajax({
-      type:'post',
-      url:'addcart.php',
-      data:{add_to_cart:'add_to_cart',pid:product_id[index].value,name:name[index].value,price:price[index].value,
-      image:image[index].value,qty:quantity[index].value
+      type:'get',
+      url:'http://127.0.0.1:8000/cart/add/menu',
+      data:{
+        ProductId:product_id,quantity:quantity,productName:product_name,
+        price:price,image:image
       },
-  })
-    .done(function (data) {
-      // alert(data);
-      if(data){
-        if(data=='request'){
-          document.getElementById("notificationmethod").style.display = "block";
+      dataType:'json',
+      success:function(response){
+        if(response.status==0){
+            document.getElementById("notificationmethod").style.display = "block";
         }
-        else if(data=='redirect'){
-          window.location.href = '/DOANCS22/user/formL.php';
+        else if(response.status==2){
+            document.getElementById("addsucces").style.display = "block";
         }
         else{
-          document.querySelector('.countsp').innerText = data;
-          document.getElementById("addsucces").style.display = "block";
+            count.innerText = parseInt(count.textContent.trim())+1;
+            document.getElementById("addsucces").style.display = "block";
         }
+      },
+      error :function(error){
+
       }
-    })
-    .fail(function (data) {
-    });
+  })
   })
 })
 function closeaddsucces(){
 document.getElementById("addsucces").style.display = "none";
 }
-function closemethod(){
-document.getElementById("notificationmethod").style.display = "none";
-}
+
 document.onclick=function(event){
 const addsucces = document.getElementById('addsucces');
 if (!addsucces.contains(event.target)) {
@@ -47,36 +53,40 @@ if (!addsucces.contains(event.target)) {
 }
 }
 
-function closemethod(){
-document.getElementById("notificationmethod").style.display = "none";
+
+confirmation.addEventListener('click',function(){
+    closemethod();
+});
+function closemethod() {
+    document.getElementById("notificationmethod").style.display = "none";
 }
 
-
-
-const btn_pay=document.querySelectorAll('.btn-pay');
-btn_pay.forEach(function(button,index){
+const btnPay=document.querySelectorAll('.btn-pay');
+btnPay.forEach(function(button,index){
   button.addEventListener('click',function(){
+    let productId=button.dataset.id;
     $.ajax({
-      type:'post',
-      url:'handlepay.php',
-      data:{idsp:product_id[index].value},
-    })
-    .done(function(data){
-      console.log(data=='request');
-      if(data){
-        if(data==0){
+      type:'get',
+      url:'http://127.0.0.1:8000/user/check/payment',
+      data:{
+        productId:productId
+      },
+      dataType:'json',
+      success:function(response){
+        if(response.status=='info_add'){
+          window.location.href='http://127.0.0.1:8000/info/add';
+        }
+        else if(response.status=='success'){
+          window.location.href='http://127.0.0.1:8000/user/payment/'+productId;
+        }
+        else{
           document.getElementById("notificationmethod").style.display = "block";
         }
-        else if(data==1){
-          window.location.href = '/DOANCS22/user/formL.php';
-        }
-        else if(data==2){
-          window.location.href = '/DOANCS22/user/thanhtoan.php?idsp='+product_id[index].value;
-        }
+      },
+      error:function(error){
+
       }
     })
-    .fail(function(data){
-
-    })
+    // window.location.href = 'http://127.0.0.1:8000/cart';
   })
-})
+});

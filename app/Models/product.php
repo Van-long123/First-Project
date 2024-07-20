@@ -17,4 +17,12 @@ class product extends Model
         $products=$products->paginate($perPage)->withQueryString();
         return $products;
     }
+
+    public function comments(){
+        return $this->hasMany(
+            Comment::class,
+            'product_id',
+            'id'
+        );
+    }
 }

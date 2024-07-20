@@ -13,29 +13,23 @@
                      
                   </aside>
                </div>
-               <div class="text-food-details col-md-6">
-                  <p class="title-food"> </p>
-                  
-                  
+
+               <div class="text-food-details col-md-6" data-image="{{ $product->image}}" data-id="{{$product->id}}" data-quantity="{{$product->quantity}}">
+                  <p class="title-food">{{$product->product_name}} </p>
                   <p class="price-food">
-                     <span>
-                        <b>Giá bán: {{$product->price}}</b> VNĐ </span>
+                     <span><b>Giá bán: {{$product->price}}</b> VNĐ </span>
                   </p>
-                  
                   <p>
-                  
-                     <button class="buy-now">order now</button>
+                     <button class="buy-now">Mua ngay</button>
                   </p>
                   <div class="book-a-table-now">
-                     <div class="new">New</div>
+                     <div class="new">Mới</div>
                      
                      <button class="btn_add show-menu common-button">Thêm vào giỏ</button>
                   </div>
                   <hr>
-                  <p>
-                  
-                  </p>
                </div>
+               
             </div>
          </div>
          <div></div>
@@ -57,28 +51,35 @@
                   <span>
                      <b>Đánh giá từ khách hàng</b>
                   </span>
-                  <div class="judge" id="dsbinhluan">
+
                   
-                     <div class="info-profile" id="dsbinhluan">
-                        <span class="name-tag"></span>
-                        <p class="person-rate">
-                        
-                        
-                        <span class="prize"></span>
-                        </p>
-                     </div>
+                  <div class="judge" id="dsbinhluan">
+                     
+                     @if($listComment->count()>0)
+                        @foreach ($listComment as $value)
+                           <div class="info-profile" id="dsbinhluan">
+                              <span class="name-tag">{{$value->username}}</span>
+                              <p class="person-rate">
+                              <span class="prize">{{$value->content}}</span>
+                              </p>
+                           </div>
+                        @endforeach
+                     @endif
                   </div>
                   
                   
                         <div class="judge-comment">
                            <div class="img-profile">
-                              <!-- <img src="./images/profile1.jpg" alt=""> -->
-                              <span class="name-tag"></span>
+                              <span class="name-tag">{{Auth::user()->username}}</span>
                            </div>
-                           <div class="input-judge">
-                           <input type="hidden" value="" id="idsp"> 
-                           <input class="ip" type="text" placeholder="       Nhận xét" name="content" id="content">
-                           <input class="bt" type="button" value="Gửi" id="btnGui"></input>
+                           <form action="{{route('comment')}}" method="post" id="comment-form">
+                              <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
+                              <div class="input-judge">
+                              <input class="ip" type="text" placeholder="       Nhận xét" name="content" id="content">
+                              <button type="submit" id="btnGui" class="btn btn-primary bt" data-id="{{$product->id}}">Gửi</button>
+                              <br>
+                              <span style="color:red" class="error"></span>
+                           </form>
                            </div>
                         </div>
                </div>
@@ -97,7 +98,7 @@
             @foreach ($listProduct as $key =>$value)
                <a href="{{route('detail.product',$value->id)}}">
                   <div class="suggest-item">
-                     <img class="suggest-item-img " src="{{asset("image/$value->image")}}" alt="">
+                     <img class="suggest-item-img" src="{{asset("image/$value->image")}}" alt="">
                      <img class="img-ch" src="{{asset('image/chinhhang.png')}}" alt="">
                      <p class="suggest-item-name mt-1 ms-1">
                         {{$value->product_name}}
@@ -122,7 +123,7 @@
     <div class="method-content">
       <p class="method-text">sản phẩm đã hết!</p>
       <div class="method-actions">
-        <button class="confirm" onclick="closemethod()">Xác nhận</button>
+        <button class="confirmation btn btn-primary" >Xác nhận</button>
       </div>
     </div>
   </div>

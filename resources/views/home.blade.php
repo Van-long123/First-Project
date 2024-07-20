@@ -44,7 +44,7 @@
                 @foreach ($products as $key=>$value)
                     <div class="col-lg-4 col-md-6 col-12 mb-3">
                         <div class="h-100 card" data-id="{{$value->id}}" data-quantity="{{$value->quantity}}">
-                            <img src="image/{{$value->image}}" data-image="{{ $value->image }}" class="card-img-top " alt="...">
+                            <img src="image/{{$value->image}}" data-image="{{ $value->image }}" class="card-img-top" alt="...">
                             <button class="btn-add rounded" ><i class="bi bi-cart-check-fill"></i></button>
                             {{-- <a href="{{route('detail.product',$value->id)}}"> --}}
                             <div class="money-menu">{{$value->price}}<sup>đ</sup></div>
@@ -54,7 +54,9 @@
                                       {{$value->product_name}}
                                   </h5>
                               </a>
-                              <a href="{{route('payment',$value->id)}}"><button class="btn btn-pay border border-primary mt-2">Mua ngay</button></a>
+                              <input type="hidden" class="trash-all cancel confirm"></input>
+                              <button class="btn btn-pay border border-primary mt-2" data-id="{{$value->id}}">Mua ngay</button>
+                              {{-- <a href="{{route('payment',$value->id)}}"><button class="btn btn-pay border border-primary mt-2">Mua ngay</button></a> --}}
                           </div>
                       </div>
 
@@ -62,12 +64,14 @@
                     </div>
                 @endforeach
               @endif
+             <div class="my-5">
+              {{$products->links()}}
+             </div>
 
             </div>
 
           </div>
          
-          {{$products->links()}}
         </div>
       </div>
     </div>
@@ -104,7 +108,7 @@
             <h6 class="h6">VÀO CỬA HÀNG TRÊN ỨNG DỤNG FOOR</h6>
             <div class="Footer-images">
               <div class="image-qr">
-                <img src="../image1/QR2.png" alt="">
+                <img src="image/QR2.png" alt="">
               </div>
               <div class="image-app">
                 <div class="app-image"><img class="image-app-one" src="image/apple1.png"><span>App store</span></div>
@@ -130,11 +134,11 @@
   </div>
   <div id="notificationmethod" class="method">
     <div class="method-content">
-      <p class="method-text">sản phẩm đã hết!</p>
-      <div class="method-actions">
-        <button class="confirm" >Xác nhận</button>
-      </div>
+        <p class="method-text">sản phẩm đã hết!</p>
+        <div class="method-actions">
+            <button class="confirmation btn btn-primary" >Xác nhận</button>
+        </div>
     </div>
-  </div>
+</div>
 
 @endsection

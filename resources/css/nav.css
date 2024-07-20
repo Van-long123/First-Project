@@ -164,9 +164,17 @@ input[type="search1"]:focus {
 }
 .home-section{
     z-index: 1000;
-   /* background: #ffffff; */
-   height: 10vh;
+    
+    position: fixed;
+    top: -1px;
+
+   background: #ffffff;
+   /* height: 10vh; */
    width: 100%;
+}
+.content{
+    position: relative;
+    top: 60px;
 }
 
 
@@ -184,9 +192,10 @@ input[type="search1"]:focus {
   .addsucces-actions{
     background-color: #FF3945;
     border-radius: 5px;
-    padding: 7px;
+    font-size: 20px;
+    padding: 4px;
     margin-top: 15px;
-    margin-bottom: 3px;
+    /* margin-bottom: 3px; */
     cursor: pointer;
   }
   .addsucces-actions a{
@@ -203,16 +212,18 @@ input[type="search1"]:focus {
     position: absolute;
     right: 7px;
     top: 4px;
+    font-size: 17px;
   }
   #addsucces{
+    margin-top: 5px;
     display: none;
     position: absolute;
-    width: 250px;
+    width: 280px;
     top: 50px;
-    right: 10px;
+    right: -30px;
     background-color: rgb(255, 255, 255);
     border-radius: 6px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    height: 100px;
+    /* height: 100px; */
   }

@@ -49,10 +49,10 @@
                                 <a  href="{{route('cart')}}"><i style="font-size: 23px; "
                                         class="bi bi-cart-check-fill"></i></a>
                                 <span class="countsp">
-                                    {{Auth::guard()->check() ? session('count'):''}}
+                                    {{Auth::guard()->check() ? Auth::user()->cart()->count():''}}
                                 </span>
-                                <div id="addsucces">
-                                    <p class="addsucces-xmark"><i class="fa-solid fa-xmark" onclick="closeaddsucces()"></i></p>
+                                <div id="addsucces" >
+                                    <p class="addsucces-xmark"><i class="fa-solid fa-xmark" ></i></p>
                                     <p class="addsucces-text"><i class="fa-solid fa-circle-check"></i>Thêm vào giỏ hàng thành công!</p>
                                     <div class="addsucces-actions" >
                                         <a href="{{route('cart')}}">Xem giỏ hàng và thanh toán</a>
@@ -85,7 +85,7 @@
         </div>
         
 
-        <main class="my-5">
+        <main class="my-5 content">
             @yield('content')
         </main>
         {{-- @yield('suggestedproduct') --}}

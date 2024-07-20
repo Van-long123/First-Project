@@ -65,8 +65,9 @@
             </div>
 
           </div>
-         
-          {{$products->links()}}
+          <div class="my-5">
+            {{$products->links()}}
+           </div>
         </div>
       </div>
     </div>

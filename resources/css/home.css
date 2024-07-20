@@ -365,7 +365,7 @@ background-color: #ddd;
 .page-item a:focus {
     box-shadow: none;
 }
-.addsucces-text{
+/* .addsucces-text{
   margin: 0;
   font-size: 14px;
   margin-bottom: 4px;
@@ -374,20 +374,20 @@ background-color: #ddd;
   color: green;
   margin-right: 4px;
   font-size: 16px;
-}
-.addsucces-actions{
+} */
+/* .addsucces-actions{
   background-color: #FF3945;
   border-radius: 5px;
   padding: 7px;
   margin-top: 15px;
   margin-bottom: 3px;
   cursor: pointer;
-}
-.addsucces-actions a{
+} */
+/* .addsucces-actions a{
   color: #FFFFFF;
   text-decoration: none;
-}
-#addsucces p{
+} */
+/* #addsucces p{
   margin: 0;
 }
 .addsucces-xmark{
@@ -409,7 +409,7 @@ background-color: #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 10px;
   height: 100px;
-}
+} */
 /* notificationmethod */
 .method {
     display: none;
@@ -421,6 +421,9 @@ background-color: #ddd;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
   }
+  /* .method-name-product{
+    display: none;
+  } */
   .method-content {
     background-color: white;
     margin: 15% auto;

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Cart;
+use App\Models\Comment;
 use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,9 @@ Route::get('productofcategory/{category}',[HomeController::class, 'productOfCate
 Route::get('/detail/product/{product}',[HomeController::class, 'detailProduct'])->name('detail.product');
 // Route::get('/detail/product/{product}',[HomeController::class, 'detailProduct'])->name('detail.product');
 Route::get('/user/payment/{id?}',[HomeController::class, 'payment'])->name('payment');
+// Route::get('/user/payment/{product}',[HomeController::class, 'payment'])->name('payment');
+Route::get('/user/check/payment',[HomeController::class, 'checkPayment'])->name('payment');
+Route::get('/user/check/payment/incart',[HomeController::class, 'checkPaymentInCart'])->name('checkPaymentInCart');
 Route::get('info/add',[HomeController::class, 'info_add'])->name('info_add');
 Route::post('info/add',[HomeController::class, 'post_info_add']);
 Route::get('info/update',[HomeController::class, 'info_update'])->name('info_update');
@@ -64,6 +68,8 @@ Route::prefix('cart')->group(function () {
     
 });
 
+Route::post('comment',[HomeController::class, 'comment'])->name('comment');
+
 
 // Login with google
 Route::get('auth/google',[LoginController::class,'loginGoogle'])->name('auth.google');
@@ -78,5 +84,25 @@ Auth::routes();
 //     Route::get('/detail/product/{product}',[HomeController::class, 'detailProduct'])->name('detail.product');
 // });
 Route::get('test',function(){
-    return view('product.test'); 
+//    $chuoi = "Giá bán: 55000 VNĐ";
+
+//    // Loại bỏ "Giá bán: " và " VNĐ"
+//    $chuoi_moi = str_replace(["Giá bán: ", " VNĐ"], "", $chuoi);
+   
+//    echo $chuoi_moi;  // Kết quả sẽ là "55000"
+    // Comment::create([
+    //     'username'=>'pham long',
+    //     'user_id'=>Auth::user()->id,
+    //     'content'=>'text',
+    //     'product_id'=>2,
+    // ]);
+    $quantity=product::find(1)->quantity;
+    $listCart =Auth::user()->cart;
+    foreach( $listCart as $list){
+        $product=product::find($list->product_id);
+        if(empty($product->quantity)){
+            $product_id[]= $product->product_name;
+        }
+    }
+    dd(!empty($product_id));
 });

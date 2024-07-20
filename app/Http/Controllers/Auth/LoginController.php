@@ -102,9 +102,7 @@ class LoginController extends Controller
         if ($response = $this->authenticated($request, $this->guard()->user())) {
             return $response;
         }
-        $UserId=Auth::user()->id;
-        $count=Cart::where('user_id',$UserId)->count();
-        $request->session()->put('count',$count);
+        
         return redirect()->intended($this->redirectPath());
     }
     protected function validateLogin(Request $request)

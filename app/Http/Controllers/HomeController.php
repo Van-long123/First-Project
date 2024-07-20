@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\InfoRequest;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Cart;
 use App\Models\Info;
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\product;
 use App\Models\category;
 use Illuminate\Http\Request;
+use App\Http\Requests\InfoRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -54,7 +55,29 @@ class HomeController extends Controller
     }
     public function detailProduct(product $product){
         $listProduct=getProduct();
-        return view('product.detail',compact('product','listProduct'));
+        $listComment=$product->comments;
+        return view('product.detail',compact('product','listProduct','listComment'));
+    }
+    public function comment(Request $request){
+        $request->validate([
+            'content'=>'required',
+        ],
+        [
+            'content.required'=>'Nội dung không được để trống'
+        ]);
+        $product_id=$request->productId;
+        $content=$request->content;
+        Comment::create([
+            'username'=>Auth::user()->username,
+            'user_id'=>Auth::user()->id,
+            'content'=>$content,
+            'product_id'=>$product_id,
+        ]);
+        return response()->json([
+            'status'=>'success',
+            'name'=>Auth::user()->username,
+        ]);
+        
     }
     public function cart(){
         $userId=Auth::user()->id;
@@ -66,21 +89,66 @@ class HomeController extends Controller
         return view('product.cart',compact('listProduct','listCart','countproduct','userInfo','total'));
     }
     public function payment($id=null){
+        // public function payment(product $product){
         $userInfo=Auth::user()->info;
-        if(empty($userInfo)){
-            return view('user.info_add');
-        }
         $total=null;
         if(!empty($id)){
             $product=product::where('id',$id)->get();
         }
         else{
-            $userId=Auth::user()->id;
-            $product=Cart::where('user_id',$userId)->get();
+            $product =Auth::user()->cart;
         }
-
-        // dd($product->count());
+        // dd($product);
         return view('user.payment',compact('userInfo','product','total'));
+    }
+    public function checkPaymentInCart(Request $request){
+        $userInfo=Auth::user()->info;
+        $listCart =Auth::user()->cart;
+        if(empty($userInfo)){
+            $status='info_add';
+            return response()->json([
+                'status'=>$status,
+            ]);
+            // return view('user.info_add');
+        }
+        $listCart =Auth::user()->cart;
+        foreach( $listCart as $list){
+            $product=product::find($list->product_id);
+            if(empty($product->quantity)){
+                $product_name[]= $product->product_name;
+            }
+        }
+        if(empty($product_name)){
+            $product_name='none';
+        }
+        return response()->json([
+            'product_name'=>$product_name,
+        ]);
+        // else if(){
+
+        // }
+        
+    }
+    public function checkPayment(Request $request){
+        $userInfo=Auth::user()->info;
+        $id=$request->productId;
+        $quantity=product::find($id)->quantity;
+        if(empty($userInfo)){
+            $status='info_add';
+            // return view('user.info_add');
+        }
+        else if($quantity==0){
+            $status='sold_out';
+        }
+        else{
+            $status='success';
+        }
+        return response()->json([
+            'status'=>$status,
+        ]);
+        
+        // // dd($product->count());
+        // return view('user.payment',compact('userInfo','product','total'));
     }
     public function info_add(){
         return view('user.info_add');
@@ -171,8 +239,49 @@ class HomeController extends Controller
         ]);
     }
     public function addCartFromMenu(Request $request){
+        $product_id=$request->ProductId;
+        $count=$request->count;
+        $quantity=$request->quantity;
+        $product_name=$request->productName;
+        $price=str_replace('đ', '', $request->price);
+        $price=trim($price);
+        $image=$request->image;
+        $cart=Cart::where([
+            'product_id'=>$product_id,
+            'user_id'=>Auth::user()->id
+        ])->first();
+        $product=product::find($product_id);
+        
+        if(empty($cart)){
+            if($product->quantity!=0){
+                Cart::create([
+                    'quantity'=>1,
+                    'product_id'=>$product_id,
+                    'product_name'=>$product_name,
+                    'price'=>$price,
+                    'image'=>$image,
+                    'user_id'=>Auth::user()->id,
+                ]);
+                $status=1;
+            }
+            else{
+                $status=0;
+            }
+        }
+        else{
+            $checkQuantity=$cart->quantity+1;
+            if($product->quantity>=$checkQuantity){
+                $cart->update([
+                    'quantity'=>$checkQuantity,
+                ]);
+                $status=2;
+            }
+            else{
+                $status=0;
+            }
+        }
         return response()->json([
-            'status'=>'success',
+            'status'=>$status,
         ]);
     }
     public function updateCart(Request $request){
@@ -201,7 +310,6 @@ class HomeController extends Controller
         $productId=$request->product_id;
         if($productId == 0){
             Cart::truncate();
-            $request->session()->put('count',0);
             $count=0;
         }
         else{
@@ -209,7 +317,6 @@ class HomeController extends Controller
             $countCart=Cart::all()->count();
             if($countCart>=1){
                 $count=$countCart;
-                $request->session()->put('count',$count);
             }
             else{
                 $count=0;

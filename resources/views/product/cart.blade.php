@@ -45,7 +45,7 @@
                             <div class="cart-item">
                                 <label>
                                 </label>
-                                <img class="mx-2 " src="image/{{$value->image}}" alt="">
+                                <img class="mx-2 " src="{{asset("image/$value->image")}}" alt="">
                                 <a href="{{route('detail.product',$value->product_id)}}">
                                     {{$value->product_name}}
                                 </a>
@@ -123,9 +123,9 @@
                             <span class="total total-money">{{$total}}</span><sup>đ</sup>
                         </div>
                         <div class="cart-sidebar-btn">
-                            <button class=""><a href="{{route('payment')}}">Mua hàng( <span class="total-btn">
+                            <button class="pay-cart">Mua hàng( <span class="total-btn">
                                 {{$countproduct}}
-                                    </span> )</a></button>
+                                    </span> )</button>
                         </div>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
 
 <div id="notificationmethod" class="method">
     <div class="method-content">
-        <p class="method-text">sản phẩm đã hết!</p>
+        <p class="method-text">sản phẩm <span class="method-name-product"></span> đã hết! </p>
         <div class="method-actions">
             <button class="confirmation btn btn-primary" >Xác nhận</button>
         </div>
