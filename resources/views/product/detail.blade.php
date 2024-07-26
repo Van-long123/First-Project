@@ -20,7 +20,7 @@
                      <span><b>Giá bán: {{$product->price}}</b> VNĐ </span>
                   </p>
                   <p>
-                     <button class="buy-now">Mua ngay</button>
+                     <button class="buy-now" data-id="{{$product->id}}">Mua ngay</button>
                   </p>
                   <div class="book-a-table-now">
                      <div class="new">Mới</div>
@@ -68,7 +68,9 @@
                   </div>
                   
                   
-                        <div class="judge-comment">
+                  @auth
+                      
+                  <div class="judge-comment">
                            <div class="img-profile">
                               <span class="name-tag">{{Auth::user()->username}}</span>
                            </div>
@@ -81,6 +83,8 @@
                               <span style="color:red" class="error"></span>
                            </form>
                            </div>
+                  @endauth      
+
                         </div>
                </div>
             </div>
@@ -128,6 +132,9 @@
     </div>
   </div>
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+@vite(['resources/js/detail.js'])
 {{-- @section('suggestedproduct')
     @extends('product.suggestedproducts')
 @endsection --}}

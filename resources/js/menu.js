@@ -37,7 +37,12 @@ btn_add.forEach(function(button,index){
         }
       },
       error :function(error){
-
+        if(error.status==401){
+          window.location.href='http://127.0.0.1:8000/login';
+        }
+        else if(error.status==403){
+          window.location.href='http://127.0.0.1:8000/email/verify';
+        }
       }
   })
   })
@@ -64,6 +69,7 @@ function closemethod() {
 const btnPay=document.querySelectorAll('.btn-pay');
 btnPay.forEach(function(button,index){
   button.addEventListener('click',function(){
+    console.log(button);
     let productId=button.dataset.id;
     $.ajax({
       type:'get',
@@ -73,18 +79,26 @@ btnPay.forEach(function(button,index){
       },
       dataType:'json',
       success:function(response){
-        if(response.status=='info_add'){
-          window.location.href='http://127.0.0.1:8000/info/add';
+        console.log(response)
+        if(response.status=='sold_out'){
+          document.getElementById("notificationmethod").style.display = "block";
         }
         else if(response.status=='success'){
           window.location.href='http://127.0.0.1:8000/user/payment/'+productId;
         }
         else{
-          document.getElementById("notificationmethod").style.display = "block";
+          window.location.href='http://127.0.0.1:8000/info/add/'+response.status;
         }
       },
       error:function(error){
-
+        // console.log(error.status)
+        if(error.status==401){
+          window.location.href='http://127.0.0.1:8000/login';
+        }
+        else if(error.status==403){
+          window.location.href='http://127.0.0.1:8000/email/verify';
+        }
+        // window.location.href='http://127.0.0.1:8000/login';
       }
     })
     // window.location.href = 'http://127.0.0.1:8000/cart';

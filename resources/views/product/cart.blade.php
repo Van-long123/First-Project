@@ -87,9 +87,6 @@
                     $total+=$value->price*$value->quantity
                 @endphp
                 @endforeach
-                {{
-                    request()->session()->put('total',$total)
-                }}
                 </div>
                 <div class="col-lg-3 col-12">
                     <div>
@@ -180,6 +177,7 @@
     </div>
 </div>
 @endsection
+@vite(['resources/js/cart.js'])
 
 {{-- <script>
     let productIdToDelete = null;

@@ -105,11 +105,11 @@
             <div class="Footer-images">
               <div class="image-qr">
                 
-                <img src="{{ asset('image/QR2.png') }}" alt="">
+                {{-- <img src="{{ asset('image/QR2.png') }}" alt=""> --}}
               </div>
               <div class="image-app">
-                <div class="app-image"><img class="image-app-one" src="image/apple1.png"><span>App store</span></div>
-                <div class="app-image"><img class="image-app-two" src="image/chplay.png"><span>Coogle Play</span></div>
+                <div class="app-image"><img class="image-app-one" src="{{asset('image/apple1.png')}}"><span>App store</span></div>
+                <div class="app-image"><img class="image-app-two" src="{{asset('image/chplay.png')}}"><span>Coogle Play</span></div>
               </div>
             </div>
           </div>

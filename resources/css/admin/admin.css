@@ -1,0 +1,280 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.home-section{
+    position: fixed;
+    top: 0px;
+}
+.body-fixed{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: auto;
+    left: auto;
+}
+body, html{
+    /* overflow-x: hidden; */
+    /* không hiển thị thanh trượt khi vượt quá kích thước */
+}
+#logo img{
+    margin-bottom: 10px;
+    width: 100px;
+}
+.nav-item{
+    margin-left: 30px;
+}
+.nav-item .nav-link{
+    color: black;
+    font-weight: bold;
+    transition: 0.5s ease;
+}
+#first-child{
+    color: #ffc800;
+    text-shadow: 1px 1px 1px black;
+}
+.nav-item .nav-link:hover{
+    color: #ffc800;
+    text-shadow: 1px 1px 1px black;
+}
+.icons{
+    margin-right: 30px; 
+    font-size: 23px;  
+}
+.icons i{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.icons-cart{
+    display: inline-block;
+    position: relative;
+    z-index: 11;
+}
+.icons-cart span{
+    position: absolute;
+    top:-8px;
+    right: -7px;
+    font-size: 11px;
+    text-align: center;
+    background-color: rgb(255, 66, 79);
+    color: rgb(255, 255, 255);
+    border-radius: 9px;
+    padding: 0 3px 0 3px;
+}
+.icon-search{
+    position: relative;
+}
+.bi-search{
+    position: absolute;
+    right:18px;
+    top: 2px;
+}
+.bi-person-fill{
+    position: relative;
+    right: -14px;
+    top: -1.3px;
+}
+.icons-user i:hover {
+    color: #fac031;
+}
+.icons-user{
+    position: relative;
+}
+.icons-user-board{
+    position: absolute;
+    width:170px;
+    right:-14px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+.icons-user-board a{
+    text-decoration: none;
+    /* border-radius: 5px; */
+    color: #38383D;
+    font-size: 15px;
+    display: block;
+    padding: 7px;
+}
+.icons-user-board a:hover{
+    background-color: #ced4da;
+}
+.icons-user:hover .icons-user-board{
+    display: block;
+}
+.icon-search i:hover {
+    color: #fac031;
+}
+.icons-cart i:hover {
+    color: #fac031;
+}
+.btn-bi-search{
+    border: none;
+}
+input[type="search1"]:focus {
+    outline: none;
+    border-color: initial; /* Giữ màu viền mặc định */
+    /* cái màu xanh nớ là box-shadow   */
+    box-shadow: none; /* Loại bỏ bóng khi được chọn */
+    border: 1px solid #cccaca;    
+}
+/* .form-control{
+} */
+/* .icons a{
+    margin-left: 10px;
+    cursor: pointer;
+}
+.icons a:hover{
+    color:  rgb(64, 214, 214);
+}
+.icons i:hover{
+    color:  rgb(64, 214, 214);
+} */
+@media screen and (max-width:982px){
+    .icons{
+        margin-left: 25px;
+}
+}
+.home-section{
+    z-index: 1000;
+   background: #ffffff;
+   height: 10vh;
+   width: 100%;
+}
+.menu{
+    z-index: 0;
+    position: relative;
+    top: 100px;
+}
+.menu h1{
+    font-size: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.menu h1 span{
+    margin-left: 15px;
+    color: #ffc800;
+    font-family: mv boli;
+}
+.menu h1 span::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: #fac031;
+    display: block;
+}
+/* sidebar menu  */
+/* menu  */
+.fs-4{
+    margin-top: 10px;
+    margin-left: -30px;
+    font-size: 15px;
+    font-weight: 500;
+}
+/* chu y  */
+.sidebar    {
+    /* margin-left: 20px; */
+    color: black;
+    border: 1px solid #ced4da;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* height: auto; */
+}
+@media screen and (max-width:991px) {
+    .sidebar {
+        display: none;
+    }
+}
+/* @media screen and (max-width:1200px) {
+    .sidebar {
+        width:200px;
+    }
+} */
+
+
+.nav-sidebar{
+    cursor: pointer;
+    border-radius: 5px;
+    /* background-color: #ced4da; */
+    padding: 3px;
+    margin: 1px 0 1px 0;
+    transition:linear 1;
+}
+.nav-sidebar:hover{
+    background-color: #ced4da;
+}
+.nav-sidebar-img{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+
+
+
+
+
+.card{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.menu-image{
+    position: relative;
+    width: 90%;
+    margin: 15px auto 0 auto;
+}
+/* chus ys  */
+.card-img-top{
+    height: 205px;
+    /* height: 80%; */
+    object-fit: cover;
+}
+.cart-menu{
+    position: absolute;
+    top: 5px;
+    right: -30px;
+    opacity: 0;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .2s linear;
+    background:none;
+    border: none;
+}
+
+#pagi a {
+    text-decoration: none;
+    font-size: 3rem;
+    display: block;
+    background-color: gold;
+    border-radius: 45%;
+  }
+  #pagi li{
+    list-style-type: none;
+    display: inline-block;
+  }
+  #pagi{
+                margin-top:10px;
+                display:flex ;
+                justify-content: center;
+                align-content: center;
+            }
+                #pagi a{
+                
+                padding: 10px;
+                transition: 0.5s;
+            }
+#pagi a:hover{
+    background: #fac031;
+    transform: scale(0.3s);
+
+}
+
+.alert{
+    font-size: 15px;
+}

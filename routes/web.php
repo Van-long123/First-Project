@@ -1,15 +1,26 @@
 <?php
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Comment;
 use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\User\OrderControl;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\InfoController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\User\PaymentController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\Admin\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\Auth\AdminRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +37,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['verified','auth'])->get('/test', function () {
-    return view('welcome');
-});
 Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
@@ -43,66 +51,95 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
     return redirect('/home');
-})->middleware(['auth'])->name('verification.verify');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.verify');
+
+
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('productofcategory/{category}',[HomeController::class, 'productOfCategory'])->name('product.category');
+Route::get('category/{category}',[HomeController::class, 'productOfCategory'])->name('product.category');
 Route::get('/detail/product/{product}',[HomeController::class, 'detailProduct'])->name('detail.product');
-// Route::get('/detail/product/{product}',[HomeController::class, 'detailProduct'])->name('detail.product');
-Route::get('/user/payment/{id?}',[HomeController::class, 'payment'])->name('payment');
-// Route::get('/user/payment/{product}',[HomeController::class, 'payment'])->name('payment');
-Route::get('/user/check/payment',[HomeController::class, 'checkPayment'])->name('payment');
-Route::get('/user/check/payment/incart',[HomeController::class, 'checkPaymentInCart'])->name('checkPaymentInCart');
-Route::get('info/add',[HomeController::class, 'info_add'])->name('info_add');
-Route::post('info/add',[HomeController::class, 'post_info_add']);
-Route::get('info/update',[HomeController::class, 'info_update'])->name('info_update');
-Route::post('info/update',[HomeController::class, 'post_info_update']);
 
-Route::prefix('cart')->group(function () {
-    Route::get('/',[HomeController::class, 'cart'])->name('cart');
-    Route::get('delete',[HomeController::class, 'deleteCart'])->name('deletecart');
-    Route::get('add',[HomeController::class, 'addCart'])->name('addCart');
-    Route::get('update',[HomeController::class, 'updateCart']);
-    Route::get('/delete/product',[HomeController::class, 'deleteCartProduct'])->name('deleteCartProduct');
-    Route::get('add/menu',[HomeController::class, 'addCartFromMenu']);
+//payment
+Route::prefix('user')->middleware(['auth','verified'])->group(function () {
+    Route::get('/payment/{id?}',[PaymentController::class, 'payment'])->name('payment');
+    // Route::get('/user/payment/{product}',[HomeController::class, 'payment'])->name('payment');
+    Route::get('/check/payment',[PaymentController::class, 'checkPayment'])->name('payment');
+    Route::get('/check/payment/incart',[PaymentController::class, 'checkPaymentInCart'])->name('checkPaymentInCart');
+    Route::get('/handle/payment/{id?}',[PaymentController::class, 'handlePayment'])->name('handle_payment');
+});
+
+
+// order
+Route::get('/user/order',[OrderControl::class, 'order'])->name('order');
+
+//info
+Route::prefix('info')->middleware(['auth','verified'])->group(function () {
+    Route::get('/add/{id?}',[InfoController::class, 'info_add'])->name('info_add');
+    Route::post('/add',[InfoController::class, 'post_info_add']);
+    Route::get('/update/{id?}',[InfoController::class, 'info_update'])->name('info_update');
+    Route::post('/update',[InfoController::class, 'post_info_update']);
+});
+
+//cart
+Route::prefix('cart')->middleware(['auth','verified'])->group(function () {
+    Route::get('/',[CartController::class, 'cart'])->name('cart');
+    Route::get('delete',[CartController::class, 'deleteCart'])->name('deletecart');
+    Route::get('add',[CartController::class, 'addCart'])->name('addCart');
+    Route::get('update',[CartController::class, 'updateCart']);
+    Route::get('/delete/product',[CartController::class, 'deleteCartProduct'])->name('deleteCartProduct');
+    Route::get('add/menu',[CartController::class, 'addCartFromMenu']);
     
 });
 
-Route::post('comment',[HomeController::class, 'comment'])->name('comment');
+//comment
+Route::post('comment',[HomeController::class, 'comment'])->middleware(['auth','verified'])->name('comment');
 
+//change pass
+Route::get('change/pass',[HomeController::class, 'changepass'])->middleware(['auth','verified'])->name('changepass');
+Route::post('change/pass',[HomeController::class, 'postchangepass'])->middleware(['auth','verified']);
 
 // Login with google
 Route::get('auth/google',[LoginController::class,'loginGoogle'])->name('auth.google');
 Route::get('auth/google/callback',[LoginController::class,'googleCallback']);
 
-
-
 Auth::routes();
 
 
-// Route::prefix('user')->group(function () {
-//     Route::get('/detail/product/{product}',[HomeController::class, 'detailProduct'])->name('detail.product');
-// });
-Route::get('test',function(){
-//    $chuoi = "Giá bán: 55000 VNĐ";
+//admin
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/',[IndexController::class,'index'])->middleware('auth:admin')->name('index');
 
-//    // Loại bỏ "Giá bán: " và " VNĐ"
-//    $chuoi_moi = str_replace(["Giá bán: ", " VNĐ"], "", $chuoi);
-   
-//    echo $chuoi_moi;  // Kết quả sẽ là "55000"
-    // Comment::create([
-    //     'username'=>'pham long',
-    //     'user_id'=>Auth::user()->id,
-    //     'content'=>'text',
-    //     'product_id'=>2,
-    // ]);
-    $quantity=product::find(1)->quantity;
-    $listCart =Auth::user()->cart;
-    foreach( $listCart as $list){
-        $product=product::find($list->product_id);
-        if(empty($product->quantity)){
-            $product_id[]= $product->product_name;
-        }
-    }
-    dd(!empty($product_id));
+    Route::get('login',[AdminLoginController::class,'login'])->middleware('guest:admin')->name('login');
+    Route::post('login',[AdminLoginController::class,'postLogin'])->middleware('guest:admin');
+    Route::get('register',[AdminRegisterController::class,'register'])->middleware('guest:admin')->name('register');
+    Route::post('register',[AdminRegisterController::class,'postRegister'])->middleware('guest:admin');
+    Route::post('logout',[IndexController::class,'logout'])->name('logout')->middleware('auth:admin');
+
+    Route::get('order',[IndexController::class,'order'])->middleware('auth:admin')->name('order');
+    
+    Route::get('admin_admins',[IndexController::class,'admins'])->middleware('auth:admin')->name('admins');
+    Route::get('delete/admin/{admin}',[IndexController::class,'deleteAdmin'])->middleware('auth:admin')->name('deleteAdmin');
+
+    Route::get('users',[IndexController::class,'users'])->middleware('auth:admin')->name('users');
+    Route::get('delete/user/{user}',[IndexController::class,'deleteUser'])->middleware('auth:admin')->name('deleteUser');
+    
+    Route::get('categories',[CategoryController::class,'categories'])->middleware('auth:admin')->name('categories');
+    Route::post('categories',[CategoryController::class,'addCategories'])->middleware('auth:admin');
+    Route::get('delete/categorie/{category}',[CategoryController::class,'deleteCategory'])->middleware('auth:admin')->name('deleteCategory');
+    Route::get('edit/category/{id}',[CategoryController::class,'updateCategory'])->middleware('auth:admin')->name('updateCategory');
+    Route::post('update/category',[CategoryController::class,'postUpdateCategory'])->middleware('auth:admin')->name('postUpdateCategory');
+
+    Route::get('products',[ProductController::class,'products'])->middleware('auth:admin')->name('products');
+    Route::post('products',[ProductController::class,'addProducts'])->middleware('auth:admin');
+    Route::get('delete/product/{product}',[ProductController::class,'deleteProduct'])->middleware('auth:admin')->name('deleteProduct');;
+    Route::get('edit/product/{id}',[ProductController::class,'updateProduct'])->middleware('auth:admin')->name('updateProduct');
+    Route::post('update/product',[ProductController::class,'postUpdateProduct'])->middleware('auth:admin')->name('postUdateCategory');
+    
+
+});
+
+Route::get('test',function(){
+    $productDetail=product::find(111);
+    dd($productDetail);
 });

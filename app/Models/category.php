@@ -21,4 +21,9 @@ class category extends Model
             'id'
         );
     }
+
+    protected $fillable=[
+        'category_name',
+        'image',
+    ];
 }

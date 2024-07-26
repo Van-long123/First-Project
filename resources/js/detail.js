@@ -5,6 +5,39 @@ const priceFood=document.querySelector('.price-food');
 const btnAdd=document.querySelector('.btn_add');
 const confirmation=document.querySelector('.confirmation');
 const btnSent=document.getElementById('btnGui')
+const btnPay=document.querySelector('.buy-now');
+console.log(btnPay);
+btnPay.addEventListener('click',function(){
+  let productId=btnPay.dataset.id;
+    console.log(productId);
+    $.ajax({
+      type:'get',
+      url:'http://127.0.0.1:8000/user/check/payment',
+      data:{
+        productId:productId
+      },
+      dataType:'json',
+      success:function(response){
+        if(response.status=='info_add'){
+          window.location.href='http://127.0.0.1:8000/info/add';
+        }
+        else if(response.status=='success'){
+          window.location.href='http://127.0.0.1:8000/user/payment/'+productId;
+        }
+        else{
+          document.getElementById("notificationmethod").style.display = "block";
+        }
+      },
+      error:function(error){
+        if(error.status==401){
+          window.location.href='http://127.0.0.1:8000/login';
+        }
+        else if(error.status==403){
+          window.location.href='http://127.0.0.1:8000/email/verify';
+        }
+      }
+    })
+})
 btnAdd.addEventListener('click',function(){
     let product_id=foodDetails.dataset.id;
     let quantity=foodDetails.getAttribute('data-quantity')
@@ -33,7 +66,12 @@ btnAdd.addEventListener('click',function(){
           }
         },
         error :function(error){
-  
+          if(error.status==401){
+            window.location.href='http://127.0.0.1:8000/login';
+          }
+          else if(error.status==403){
+            window.location.href='http://127.0.0.1:8000/email/verify';
+          }
         }
     })
 })
@@ -60,6 +98,12 @@ btnSent.addEventListener("click",function(e){
                 $('#content').val('');
             },
             error:function(error){
+              if(error.status==401){
+                window.location.href='http://127.0.0.1:8000/login';
+              }
+              else if(error.status==403){
+                window.location.href='http://127.0.0.1:8000/email/verify';
+              }
                 // console.log(error);
                 let responseJson=error.responseJSON.errors;
                 // console.log(responseJson);
@@ -97,8 +141,10 @@ document.onclick=function(e){
     }
 }
 
-
-
+// btnPay.addEventListener('click',function(){
+    
+//     // window.location.href = 'http://127.0.0.1:8000/cart';
+//   })
 
 
 

@@ -3,7 +3,15 @@ table {
     width: 700px;
     border-collapse: collapse;
 }
-
+#infoForm{
+    margin-left: 70px; display: flex;justify-content: center;background-color: rgb(247, 247, 247);border: rgb(221, 221, 221);
+}
+.error{
+    font-weight:600;
+    font-size: 12px;
+    color: red;
+    margin-left:12%;
+}
 .line{
     margin-left: 10px;
     height: 34px;

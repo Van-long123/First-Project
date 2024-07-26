@@ -17,7 +17,7 @@
     @vite('resources/css/styleCTF.css')
     @vite(['resources/css/LS.css', 'resources/css/reponsiveLS.css','resources/css/nav.css','resources/css/home.css'])
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js','resources/js/detail.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
@@ -47,7 +47,6 @@
                                     </button>
                                 </form>
                               </div>
-
                             <div class="icons-cart">
                                 <a  href="{{route('cart')}}"><i style="font-size: 23px; "
                                         class="bi bi-cart-check-fill"></i></a>
@@ -66,9 +65,9 @@
                                 <a href="{{ route('login') }}"><i style="font-size: 26px;"
                                         class="bi bi-person-fill"></i></a>
                                 <div class="icons-user-board">
-                                    <a href="orderinfo.php" class="mt-1">Đơn hàng của tôi</a>
                                     <a href="{{route('register')}}">Đăng ký</a>
                                     @auth
+                                        <a href="{{route('order')}}" class="mt-1">Đơn hàng của tôi</a>
                                         <a href="{{ route('logout') }}" 
                                         onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();
@@ -76,8 +75,8 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
+                                        <a href="{{route('changepass')}}"class="mb-1">Đổi mật khẩu</a>
                                     @endauth
-                                    <a href="changepass.php"class="mb-1">Đổi mật khẩu</a>
                                 </div>
                             </div>
 

@@ -25,4 +25,14 @@ class product extends Model
             'id'
         );
     }
+
+
+    protected $fillable = [
+        'product_name',
+        'image',
+        'description',
+        'price',
+        'quantity',
+        'category_id',
+    ];
 }

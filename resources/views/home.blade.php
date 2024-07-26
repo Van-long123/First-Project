@@ -1,5 +1,4 @@
 @extends('layouts.home')
-
 @section('content')
 <div id="Menu" class="menu section-padding">
     <div class="container">
@@ -56,10 +55,10 @@
                               </a>
                               <input type="hidden" class="trash-all cancel confirm"></input>
                               <button class="btn btn-pay border border-primary mt-2" data-id="{{$value->id}}">Mua ngay</button>
-                              {{-- <a href="{{route('payment',$value->id)}}"><button class="btn btn-pay border border-primary mt-2">Mua ngay</button></a> --}}
+                              {{-- <a href="{{route('payment',$value->id)}}"><button class="btn border border-primary mt-2">Mua ngay</button></a> --}}
                           </div>
                       </div>
-
+                       
                         {{-- </a>    --}}
                     </div>
                 @endforeach
@@ -108,7 +107,7 @@
             <h6 class="h6">VÀO CỬA HÀNG TRÊN ỨNG DỤNG FOOR</h6>
             <div class="Footer-images">
               <div class="image-qr">
-                <img src="image/QR2.png" alt="">
+                {{-- <img src="image/QR2.png" alt=""> --}}
               </div>
               <div class="image-app">
                 <div class="app-image"><img class="image-app-one" src="image/apple1.png"><span>App store</span></div>

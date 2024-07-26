@@ -41,6 +41,12 @@ decreaseBtns.forEach(function (button, index) {
                     // const quantity = parseInt(quantities[index].value);
                 },
                 error: function(error){
+                    if(error.status==401){
+                        window.location.href='http://127.0.0.1:8000/login';
+                      }
+                    else if(error.status==403){
+                        window.location.href='http://127.0.0.1:8000//email/verify';
+                    }
                 }
             })
         }
@@ -75,7 +81,12 @@ increaseBtns.forEach(function (button, index) {
                 }
             },
             error:function(error){
-
+                if(error.status==401){
+                    window.location.href='http://127.0.0.1:8000/login';
+                }
+                else if(error.status==403){
+                    window.location.href='http://127.0.0.1:8000//email/verify';
+                }
             }
         })
     });
@@ -109,7 +120,12 @@ quantityInput.forEach(function (input, index) {
                     }
                 },
                 error:function(error){
-
+                    if(error.status==401){
+                        window.location.href='http://127.0.0.1:8000/login';
+                    }
+                    else if(error.status==403){
+                        window.location.href='http://127.0.0.1:8000//email/verify';
+                    }
                 }
             })
         }
@@ -159,7 +175,12 @@ payCart.addEventListener('click',function(){
           }
         },
         error:function(error){
-  
+            if(error.status==401){
+                window.location.href='http://127.0.0.1:8000/login';
+            }
+            else if(error.status==403){
+                window.location.href='http://127.0.0.1:8000/email/verify';
+            }
         }
       })
 })
@@ -215,6 +236,12 @@ function confirmDelete(){
             }
         },
         error: function(error){
+            if(error.status==401){
+                window.location.href='http://127.0.0.1:8000/login';
+            }
+            else if(error.status==403){
+                window.location.href='http://127.0.0.1:8000/email/verify';
+            }
         }
     })
 }

@@ -14,7 +14,7 @@
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    @vite([ 'resources/js/cart.js','resources/js/menu.js'])
+    @vite([ 'resources/js/menu.js'])
 </head>
 <body>
     <div id="home">
@@ -46,7 +46,7 @@
                               </div>
 
                             <div class="icons-cart" >
-                                <a  href="{{route('cart')}}"><i style="font-size: 23px; "
+                                <a  href="{{route('cart')}}"><i style="font-size: 27px; "
                                         class="bi bi-cart-check-fill"></i></a>
                                 <span class="countsp">
                                     {{Auth::guard()->check() ? Auth::user()->cart()->count():''}}
@@ -59,13 +59,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="icons-user" >
-                                <a href="{{ route('login') }}"><i style="font-size: 26px;"
+                            <div class="icons-user" style="background-color: red;">
+                                <a href="{{ route('login') }}"><i style="font-size: 29px;"
                                         class="bi bi-person-fill"></i></a>
                                 <div class="icons-user-board">
-                                    <a href="orderinfo.php" class="mt-1">Đơn hàng của tôi</a>
                                     <a href="{{route('register')}}">Đăng ký</a>
                                     @auth
+                                        <a href="{{route('order')}}" class="mt-1">Đơn hàng của tôi</a>
                                         <a href="{{ route('logout') }}" 
                                         onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();
@@ -73,8 +73,8 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
+                                        <a href="{{route('changepass')}}"class="mb-1">Đổi mật khẩu</a>
                                     @endauth
-                                    <a href="changepass.php"class="mb-1">Đổi mật khẩu</a>
                                 </div>
                             </div>
 

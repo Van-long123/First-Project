@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -28,6 +29,11 @@ class DatabaseSeeder extends Seeder
         // $user->save();
         $this->call(CategorySeeder::class);
         $this->call(ProductSeeder::class);
+        // $admin=new Admin();
+        // $admin->name='Pham Van Long';
+        // $admin->email='phamlong123np@gmail.com';
+        // $admin->password=Hash::make('12345678');
+        // $admin->save();
 
     }
 }

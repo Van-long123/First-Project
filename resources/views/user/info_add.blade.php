@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>info_update</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Add Information</title>
     @vite(['resources/css/forminfo.css'])
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/infoadd.js'])
 </head>
 <body>
     <div class="container">
@@ -23,42 +24,30 @@
             </div>
             @endif
             <div class="col-12 mt-5">
-                <form method="POST" action="{{route('info_add')}}" style="margin-left: 70px; display: flex;justify-content: center;background-color: rgb(247, 247, 247);border: rgb(221, 221, 221);">
-                    @csrf
+                <form id="infoForm" method="POST" action="{{route('info_add')}}">
+                    <input type="hidden" name="_token" value="<?php echo csrf_token() ?>"> 
                     <table>
                         <tr>
                             <td><label for="">Họ tên</label></td>
-                            <td> <input class="input-item @error('user_name') is-invalid @enderror" type="text" name="user_name" value="{{old('user_name')}}">
-                                @error('user_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            <td> <input class="input-item" type="text" name="user_name" value="{{old('user_name')}}">
+                            <p class="error user_name_error"> </p>
                             </td>
                                 
                         </tr>
                         
                         <tr>
                             <td> <label for="">Điện thoại di động</label></td>
-                            <td ><input class="input-item @error('phone') is-invalid @enderror" type="text" name="phone" value="{{old('phone')}}">
-                                @error('phone')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            <td ><input class="input-item " type="text" name="phone" value="{{old('phone')}}">
+                                <p class="error phone_error"> </p>
                             </td>
                                
                         </tr>
                         
                         <tr>
                             <td><label for="">Địa chỉ</label></td>
-                            <td ><textarea class="@error('address') is-invalid @enderror"  name="address" >{{old('address')}}</textarea> <br> <span class="paraitem">
+                            <td ><textarea class="textareaAddress"  name="address" >{{old('address')}}</textarea> <br> <span class="paraitem">
                                 Để nhận hàng thuận tiện hơn, bạn vui lòng cho Food biết loại địa chỉ.</span>
-                                @error('address')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                <p class="error address_error"> </p>
                             </td>
                             
                         </tr>
@@ -66,7 +55,7 @@
                             <td><label for="">Phương thức thanh toán</label></td>
                             <td>
                                 
-                                <select name="payment" id="pttt" value="" >
+                                <select name="payment" id="pttt">
                                     <option value="TTKNH" {{old('payment')=='TTKNH'?'selected':false}}>Thanh toán khi nhận hàng</option>
                                     <option value="TTMoMo" {{old('payment')=='TTMoMo'?'selected':false}}>Thanh toán bằng ví MoMo</option>
                                     <option value="TTZaloPay" {{old('payment')=='TTZaloPay'?'selected':false}}>Thanh toán bằng ví ZaloPay</option>
@@ -76,7 +65,7 @@
                         </tr>
                         <tr>
                             <td style="text-align: center;" colspan="2">
-                                <button class="create-update" type="submit" name="btngui">Cập nhật</button>
+                                <button class="btn-info create-update" type="submit" name="btngui" data-id="{{$id}}">Cập nhật</button>
                             </td>
                         </tr>
                     </table>
