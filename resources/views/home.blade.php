@@ -37,7 +37,7 @@
           </div>
         </div>
         <!-- content  -->
-        <div class="content  col-lg-9 ">
+        <div class="content  col-lg-9">
           <div class="row">
             @if(!empty($products))
                 @foreach ($products as $key=>$value)

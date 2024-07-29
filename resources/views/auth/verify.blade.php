@@ -10,7 +10,7 @@
                 <div class="card-body">
                     @if (session('message'))
                         <div class="alert alert-success" role="alert">
-                            Gửi lại thành công
+                           {{session('message')}}
                         </div>
                     @endif
 

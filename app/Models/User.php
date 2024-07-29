@@ -4,8 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\EmailVerifyQueued;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPasswordQueue;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -65,5 +67,16 @@ class User extends Authenticatable implements MustVerifyEmail
             'user_id',
             'id'
         );
+    }
+
+    public function sendEmailVerificationNotification() {
+        $delay = now()->addSeconds(5);
+        $this->notify((new EmailVerifyQueued)->delay($delay));
+        // $this->notify(new EmailVerifyQueued);
+    }
+
+    public function SendPasswordResetNotification($token){
+        $delay = now()->addSeconds(5);
+        $this->notify((new ResetPasswordQueue($token))->delay($delay));
     }
 }

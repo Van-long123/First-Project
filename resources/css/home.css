@@ -1,7 +1,7 @@
 .menu{
     z-index: 0;
     position: relative;
-    top: -13px;
+    top: 60px;
 }
 .menu h1{
     font-size: 55px;
@@ -102,6 +102,9 @@
 } 
 .btn-add i{
     font-size: 25px;
+}
+.content{
+    top: 0px;
 }
 .content .card:hover .btn-add{
     top: 5px;

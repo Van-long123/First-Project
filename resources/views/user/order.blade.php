@@ -78,7 +78,7 @@
                                                     {{rtrim($order,', ')}}
                                                     {{$order=''}}
                                                 </span></p>
-                                                <p>Tổng tiền : {{$value->total}}<span>$
+                                                <p>Tổng tiền : {{$value->total}}<span>VND
                                                     </span></p>
                                             </div>
                                         </div>

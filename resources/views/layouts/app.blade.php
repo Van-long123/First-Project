@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -17,6 +18,7 @@
     @vite('resources/css/styleCTF.css')
     @vite(['resources/css/LS.css', 'resources/css/reponsiveLS.css','resources/css/nav.css','resources/css/home.css'])
     <!-- Scripts -->
+    @vite([ 'resources/css/cart.css'])
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -42,14 +44,14 @@
                               <div class="icon-search d-flex w-100" >
                                 <form action="{{route('home')}}" method="get" class="icon-search d-flex w-100 rounded">
                                     <input style="height: 100%;" name="spsearch" class="form-control me-2 searchInput w-100 border" type="text" placeholder="Search" aria-label="Search">
-                                    <button style="border: none;" type="submit" >
-                                        <i style="font-size: 25px;" class="bi bi-search"></i> 
+                                    <button style="border: none;" type="submit">
+                                        <i style="font-size: 25px;" class="bi bi-search mt-3"></i> 
                                     </button>
                                 </form>
                               </div>
                             <div class="icons-cart">
-                                <a  href="{{route('cart')}}"><i style="font-size: 23px; "
-                                        class="bi bi-cart-check-fill"></i></a>
+                                <a  href="{{route('cart')}}"><i style="font-size: 27px; "
+                                        class="bi bi-cart-check-fill mt-3"></i></a>
                                 <span class="countsp">
                                     {{Auth::guard()->check() ? Auth::user()->cart()->count():''}}
                                 </span>
@@ -62,9 +64,9 @@
                                 </div>
                             </div>
                             <div class="icons-user" >
-                                <a href="{{ route('login') }}"><i style="font-size: 26px;"
+                                <a href="{{ route('login') }}"><i 
                                         class="bi bi-person-fill"></i></a>
-                                <div class="icons-user-board">
+                                <div class="icons-user-board mb-5" style="top: 40px">
                                     <a href="{{route('register')}}">Đăng ký</a>
                                     @auth
                                         <a href="{{route('order')}}" class="mt-1">Đơn hàng của tôi</a>

@@ -43,7 +43,7 @@
                      <b>Mô tả sản phẩm</b>
                   </span>
                   <p>
-                     {{$product->description}}
+                     {!!$product->description!!}
                   </p>
                   
                </div>

@@ -14,9 +14,9 @@ return [
     */
 
     'reset' => 'Mật khẩu của bạn đã được đổi.',
-    'sent' => 'Chúng tôi đã gửi email hương dẫn đổi mật khẩu.',
-    'throttled' => 'Please wait before retrying.',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that email address.",
+    'sent' => 'Chúng tôi đã gửi email hướng dẫn đổi mật khẩu.',
+    'throttled' => 'Vui lòng đợi trước khi thử lại.',
+    'token' => 'Mã thông báo đặt lại mật khẩu này không hợp lệ.',
+    'user' => "Chúng tôi không thể tìm thấy người dùng nào có địa chỉ email đó.",
 
 ];

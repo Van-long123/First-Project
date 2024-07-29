@@ -42,16 +42,3 @@
     </section>
 @endsection
 
-<script>
-    const btnDelete = document.getElementById('delete-btn');
-    btnDelete.addEventListener('click', function (event) {
-      event.preventDefault()
-      confirm('Are you sure you want to delete this product?')
-        if (!confirm('Are you sure you want to delete this product?')) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định (ví dụ như chuyển tiếp đến URL)
-        } else {
-            // Xử lý hành động xóa sản phẩm ở đây nếu cần
-            console.log('Deleting product...');
-        }
-    });
-</script>

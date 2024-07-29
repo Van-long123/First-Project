@@ -100,4 +100,8 @@ class HomeController extends Controller
             'status'=>$user,
         ]);
     }
+
+
+
+    
 }

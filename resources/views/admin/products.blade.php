@@ -14,7 +14,7 @@
       <input type="file" name="hinhanh" class="box"  required>
       <input type="number" min="0" max="9999999999" required placeholder="Giá" name="gia"  class="box">
       <input type="number" min="0" max="9999999999" required placeholder="Số lượng" name="soluong" class="box">
-      <div class="box" ><textarea name="mota" style="width: 100%;"></textarea></div>
+      <div class="box" ><textarea name="mota" id="editor"></textarea></div>
          <select name="iddanhmuc" class="box" id="" placeholder="Category">
             <option value="0" selected>Chọn danh mục --</option>
             @foreach ($listCategory as $item)
@@ -51,3 +51,11 @@
     
    </section>
 @endsection
+
+<script>
+   ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

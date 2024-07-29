@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -22,12 +23,6 @@
             <nav class="navbar navbar-expand-lg" id="navbar">
                 <div class="container">
                     <a class="navbar-brand" href="{{route('home')}}" id="logo"><img src="/image/logo.png" alt="" width="30px"></a>
-                    {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <i style="font-size: 35px;" class="bi bi-list i"></i>
-                    </button> --}}
-                    
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -59,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="icons-user" style="background-color: red;">
+                            <div class="icons-user">
                                 <a href="{{ route('login') }}"><i style="font-size: 29px;"
                                         class="bi bi-person-fill"></i></a>
                                 <div class="icons-user-board">

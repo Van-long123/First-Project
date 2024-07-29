@@ -1,10 +1,8 @@
 @extends('layouts.admin')
 @section('content')
-<div class="pt-3 ps-3">
-    <a class="logo" href="{{route('home')}}"><img src="{{asset('image/logo.png')}}" alt=""></a>
-    <span class="info">Your order</span>
-</div>
-<div class="container-fluid my-5  d-flex  justify-content-center">
+{{-- <div class="pt-3 ps-3 mt-5">
+</div> --}}
+<div class="order container my-5  d-flex  justify-content-center">
     <div class="card card-1">
         @if(session('msg'))
             <div class="alert alert-success">
@@ -14,16 +12,16 @@
         <div class="card-header bg-white">
             <div class="media flex-sm-row flex-column-reverse justify-content-between  ">
                 <div class="col my-auto">
-                    <h4 class="mb-0">Thanks for your Order,<span class="change-color">
-                    {{Auth::guard('admin')->user()->name}}  
-                    </span> !</h4>
+                    {{-- <h4 class="mb-0">Thanks for your Order,<span class="change-color"> --}}
+                    {{-- {{Auth::guard('admin')->user()->name}}   --}}
+                    {{-- </span> !</h4> --}}
                 </div>
             </div>
         </div>
         <div class="card-body">
             <div class="row justify-content-between mb-3">
                 <div class="col-auto">
-                    <h6 class="color-1 mb-0 change-color">Receipt</h6>
+                    <h6 class="color-1 mb-0 change-color display-6 ">Hóa đơn</h6>
                 </div>
             </div>
             @foreach ($orderList as $value)
@@ -69,7 +67,7 @@
                                             </span></p>
                                             <p>Tổng tiền : 
                                                 {{$value->total}}
-                                                <span>$
+                                                <span>VND
                                                 </span></p>
                                         </div>
                                     </div>
