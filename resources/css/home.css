@@ -1,7 +1,7 @@
 .menu{
     z-index: 0;
     position: relative;
-    top: 60px;
+    top: 50px;
 }
 .menu h1{
     font-size: 55px;
@@ -325,7 +325,7 @@ background-color: #ddd;
 .cart{
     /* background-color: #F5F5FA; */
     position: relative;
-    top: -40px;
+    top: 40px;
     padding: 20px 0 20px 0;         
 }
 .cart-empty{

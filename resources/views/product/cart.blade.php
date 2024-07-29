@@ -76,7 +76,7 @@
          </div>
          
  
-         <main class="my-5 content">
+         <main class="mt-5 content">
             <div class="cart">
 
                 @if (empty($countproduct))

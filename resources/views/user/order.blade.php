@@ -13,7 +13,7 @@
     
     <div class="pt-3 ps-3">
         <a class="logo" href="{{route('home')}}"><img src="{{asset('image/logo.png')}}" alt=""></a>
-        <span class="info">Your order</span>
+        <span class="info">Đơn hàng của bạn</span>
     </div>
     <div class="container-fluid my-5  d-flex  justify-content-center">
         <div class="card card-1">
@@ -25,7 +25,7 @@
             <div class="card-header bg-white">
                 <div class="media flex-sm-row flex-column-reverse justify-content-between  ">
                     <div class="col my-auto">
-                        <h4 class="mb-0">Thanks for your Order,<span class="change-color">
+                        <h4 class="mb-0">Cảm ơn vì đã đặt hàng,<span class="change-color">
                         {{Auth::user()->username}}  
                         </span> !</h4>
                     </div>
@@ -34,7 +34,7 @@
             <div class="card-body">
                 <div class="row justify-content-between mb-3">
                     <div class="col-auto">
-                        <h6 class="color-1 mb-0 change-color">Receipt</h6>
+                        <h6 class="color-1 mb-0 change-color">Hóa đơn</h6>
                     </div>
                 </div>
                 @foreach ($orderList as $value)
