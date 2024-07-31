@@ -14,7 +14,7 @@ class product extends Model
         if(!empty($keywords)){
             $products=$products->where('product_name','like','%'.$keywords.'%');
         }
-        $products=$products->paginate($perPage)->withQueryString();
+        $products=$products->paginate(6)->withQueryString();
         return $products;
     }
 

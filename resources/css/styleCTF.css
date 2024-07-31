@@ -88,8 +88,12 @@ hr {
   .next-adress-food li a{
     color: #0dcaf0;
   }
-  
+  .details{
+    position: relative;
+    top: 40px;
+  }
   .food-details {
+    
     background: #F7F7F7;
     line-height: 1;
     display: flex;

@@ -230,3 +230,10 @@ sup{
     padding: 5px;
   }
 /* notificationmethod */
+.icon-user{
+    position: relative;
+    top: 2px;
+}
+.bi-person-fill{
+    font-size: 30px;
+}

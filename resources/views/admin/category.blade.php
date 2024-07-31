@@ -35,7 +35,7 @@
          @endif
       </div>
       <div class="my-5">
-         {{$categories->links()}}
+         {{$categories->onEachSide(1)->links()}}
       </div>
 
     

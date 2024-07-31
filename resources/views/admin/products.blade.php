@@ -46,7 +46,7 @@
          @endif
       </div>
       <div class="my-5">
-         {{$listProduct->links()}}
+         {{$listProduct->onEachSide(1)->links()}}
       </div>
     
    </section>

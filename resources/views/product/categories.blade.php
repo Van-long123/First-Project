@@ -54,7 +54,7 @@
                                   </h5>
                               </a>
                               <input type="hidden" class="trash-all cancel confirm"></input>
-                              <button class="btn btn-pay border border-primary mt-2" data-id="{{$value->id}}">Mua ngay</button>
+                              <button class="btn btn-pay  mt-2" data-id="{{$value->id}}">Mua ngay</button>
                               {{-- <a href="{{route('payment',$value->id)}}"><button class="btn border border-primary mt-2">Mua ngay</button></a> --}}
                           </div>
                       </div>
@@ -110,8 +110,8 @@
                 {{-- <img src="image/QR2.png" alt=""> --}}
               </div>
               <div class="image-app">
-                <div class="app-image"><img class="image-app-one" src="image/apple1.png"><span>App store</span></div>
-                <div class="app-image"><img class="image-app-two" src="image/chplay.png"><span>Coogle Play</span></div>
+                <div class="app-image"><img class="image-app-one" src="{{asset("image/apple1.png")}}"><span>App store</span></div>
+                <div class="app-image"><img class="image-app-two" src="{{asset("image/chplay.png")}}"><span>Coogle Play</span></div>
               </div>
             </div>
           </div>

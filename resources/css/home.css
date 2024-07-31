@@ -135,19 +135,22 @@
     top: 8px;
 }
 .card-body a{
-    text-decoration: none;
+    text-decoration: none !important;
 }
-.card-title{
-    font-size: 22px;
-    color: #27272A;
+.card-title {
+    font-size: 17px;
+    text-decoration: none;
+    font-weight: 500;
+    color: #27272A !important;
 }
 .menu_icon{
     color: #fac031;
     margin-bottom: 10px;
 }
 .btn-pay{
-    color: blue;
-    padding: 10px;
+    background-color: #ff424e !important;
+    color: #FFFFFF !important;
+    padding: 8px 10px 10px 10px !important;
     transition: linear 0.3;
     border-radius: 5px;
 }

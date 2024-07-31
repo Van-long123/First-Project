@@ -48,13 +48,13 @@
                             {{-- <a href="{{route('detail.product',$value->id)}}"> --}}
                             <div class="money-menu">{{$value->price}}<sup>đ</sup></div>
                           <div class="card-body">
-                              <a href="{{route('detail.product',$value->id)}}">
+                              <a class="card-title-link" href="{{route('detail.product',$value->id)}}">
                                   <h5 class="card-title">
                                       {{$value->product_name}}
                                   </h5>
                               </a>
                               <input type="hidden" class="trash-all cancel confirm"></input>
-                              <button class="btn btn-pay border border-primary mt-2" data-id="{{$value->id}}">Mua ngay</button>
+                              <button class="btn btn-pay  mt-2" data-id="{{$value->id}}">Mua ngay</button>
                               {{-- <a href="{{route('payment',$value->id)}}"><button class="btn border border-primary mt-2">Mua ngay</button></a> --}}
                           </div>
                       </div>
@@ -64,7 +64,8 @@
                 @endforeach
               @endif
              <div class="my-5">
-              {{$products->links()}}
+                {{$products->onEachSide(1)->links()}}
+                {{-- {{$products->onEachSide(1)->links('layouts.paginationlinks')}} --}}
              </div>
 
             </div>

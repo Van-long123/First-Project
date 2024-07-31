@@ -44,6 +44,7 @@
     position: absolute;
     right: -40px;
     top: -8px;
+    font-size: 27px; 
 }
 .icons-cart span{
     position: absolute;
@@ -64,6 +65,7 @@
     position: absolute;
     right:18px;
     top: -5px;
+    font-size: 25px;
 }
 .bi-person-fill{
     position: relative;
@@ -101,7 +103,9 @@
     left: 50px;
     /* background-color: red; */
     /* padding: 20px 0; */
-    
+}
+.icon-user{
+    top: -5px;
 }
 .icons-user a i:hover{
     color: #ffc800;
@@ -123,9 +127,9 @@
     display: none;
 }
 .icons-user-board a{
-    text-decoration: none;
+    text-decoration: none !important;
     /* border-radius: 5px; */
-    color: #38383D;
+    color: #38383D !important;
     font-size: 15px;
     display: block;
     padding: 7px;
@@ -206,8 +210,8 @@ input[type="search1"]:focus {
     cursor: pointer;
   }
   .addsucces-actions a{
-    color: #FFFFFF;
-    text-decoration: none;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
   }
   #addsucces p{
     margin: 0;

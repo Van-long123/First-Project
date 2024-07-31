@@ -45,13 +45,13 @@
                                 <form action="{{route('home')}}" method="get" class="icon-search d-flex w-100 rounded">
                                     <input style="height: 100%;" name="spsearch" class="form-control me-2 searchInput w-100 border" type="text" placeholder="Search" aria-label="Search">
                                     <button style="border: none;" type="submit">
-                                        <i style="font-size: 25px;" class="bi bi-search mt-3"></i> 
+                                        <i class="bi bi-search"></i> 
                                     </button>
                                 </form>
                               </div>
                             <div class="icons-cart">
-                                <a  href="{{route('cart')}}"><i style="font-size: 27px; "
-                                        class="bi bi-cart-check-fill mt-3"></i></a>
+                                <a  href="{{route('cart')}}"><i
+                                        class="bi bi-cart-check-fill"></i></a>
                                 <span class="countsp">
                                     {{Auth::guard()->check() ? Auth::user()->cart()->count():''}}
                                 </span>
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="icons-user" >
+                            <div class="icons-user icon-user">
                                 <a href="{{ route('login') }}"><i 
                                         class="bi bi-person-fill"></i></a>
                                 <div class="icons-user-board mb-5" style="top: 40px">

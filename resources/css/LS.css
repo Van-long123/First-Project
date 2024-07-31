@@ -1,3 +1,15 @@
+  .Login{
+    position: relative;
+    top: 40px;
+  }
+  .reset-email{
+    position: relative;
+    top: 70px;
+  }
+  .change-password{
+    position: relative;
+    top: 70px;  
+  }
   .sectionLogin {
     display: grid;
     grid-template-columns: 60% 40%;

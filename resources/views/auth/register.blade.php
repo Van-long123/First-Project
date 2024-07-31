@@ -15,7 +15,7 @@
                 </div>
                 <div class="input-type ">
                     <div class="input-type-name form-group mb-3">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-users"></i>
                         <input id="name" class="@error('name') is-invalid @enderror" type="text" placeholder="         Họ và tên" name="name">
                         @error('name')
                             <span class="invalid-feedback">
@@ -33,7 +33,7 @@
                         @enderror
                     </div>
                     <div class="input-type-email form-group mb-3">
-                        <i class="fa-regular fa-envelope"></i>
+                        <i class="fa-solid fa-user"></i>
                         <input id="username" class="@error('username') is-invalid @enderror" type="text" placeholder="         Tên đăng nhập" name="username">
                         @error('username')
                             <span class="invalid-feedback">
